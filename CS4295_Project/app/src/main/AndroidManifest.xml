@@ -36,10 +36,13 @@
             android:name=".RunSetting"
             android:label="@string/title_activity_run_setting" >
         </activity>
-
         <activity
             android:name=".RunActivity"
             android:label="@string/title_activity_run" >
+        </activity>
+        <activity
+            android:name=".AccTestActivity"
+            android:label="@string/title_activity_acc_test" >
         </activity>
     </application>
 

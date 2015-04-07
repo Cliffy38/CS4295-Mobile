@@ -9,4 +9,10 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_run_page">RunPageActivity</string>
     <string name="title_activity_run">Run</string>
+    <string name="title_activity_acc_test">Acc Test</string>
+
+
+   <string name="x_axis">X-Axis</string>
+   <string name="y_axis">Y-Axis</string>
+   <string name="z_axis">Z-Axis</string>
 </resources>
