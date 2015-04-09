@@ -44,6 +44,10 @@
             android:name=".AccTestActivity"
             android:label="@string/title_activity_acc_test" >
         </activity>
+        <activity
+            android:name=".Timer"
+            android:label="@string/title_activity_timer" >
+        </activity>
     </application>
 
 </manifest>

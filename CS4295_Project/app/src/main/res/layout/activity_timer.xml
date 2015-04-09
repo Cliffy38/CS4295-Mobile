@@ -1,0 +1,86 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/LinearLayout1"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="#086A87">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ProgressBar
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="350dip"
+            android:layout_height="350dip"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circle_progress_background"
+            android:background="@drawable/circle_shape"
+            android:max="30"
+            android:progress="30"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <ProgressBar
+            android:id="@+id/progressbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="350dip"
+            android:layout_height="350dip"
+            android:indeterminate="false"
+            android:progressDrawable="@drawable/circle_progress_foreground"
+            android:background="@drawable/circle_shape"
+            android:max="100"
+            android:layout_alignParentTop="true"
+            android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/tvTimeCount"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:text="00:00"
+            android:textColor="#fff"
+            android:textSize="60dip"/>
+
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal"
+        android:padding="10dp" >
+
+        <Button
+            android:id="@+id/btnStartTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Start"
+            android:background="#2F2F2F"
+            android:textColor="#fff"/>
+
+        <Button
+            android:id="@+id/btnStopTime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:layout_weight="2"
+            android:gravity="center"
+            android:text="Stop"
+            android:visibility="gone"
+            android:background="#2F2F2F"
+            android:textColor="#fff"/>
+
+    </LinearLayout>
+
+</LinearLayout>
