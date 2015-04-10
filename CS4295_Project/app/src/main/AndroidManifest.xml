@@ -39,6 +39,10 @@
             android:name=".Pause"
             android:label="Pause" >
         </activity>
+        <activity
+            android:name=".Action1"
+            android:label="Action1" >
+        </activity>
     </application>
 
 </manifest>

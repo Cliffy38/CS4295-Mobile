@@ -1,14 +1,18 @@
 package cs4295.cs4295_project;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.Toast;
 
 
 public class Action1 extends ActionBarActivity {
@@ -21,6 +25,9 @@ public class Action1 extends ActionBarActivity {
     private long timeBlinkInMilliseconds; // start time of start blinking
     private boolean blink; // controls the blinking .. on and off
 
+    //For intent
+    private LinearLayout layout ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,6 +38,28 @@ public class Action1 extends ActionBarActivity {
         //Rotating the ProgressBar
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
         mProgressBar.setRotation((90.0f));
+
+        //set onClick event to the linear layout
+        layout = (LinearLayout)findViewById(R.id.LinearLayout1);
+        layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
+
+                String timeLeft = textViewShowTime.getText().toString().replace("\"","");
+                int time = Integer.parseInt(timeLeft);
+
+                ImageView x =  (ImageView)findViewById(R.id.imageView1);
+                //x.getImage
+
+                Intent i = new Intent(getApplicationContext() ,Pause.class);
+                i.putExtra("TimeLeft",time);
+                i.putExtra("currentAction", "SecondKeyValue");
+
+                startActivity(i);
+                finish();
+            }
+        });
 
         textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalText);
         setTimer(30); //30 second

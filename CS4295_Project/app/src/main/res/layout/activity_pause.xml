@@ -5,6 +5,19 @@ android:orientation="vertical"
 android:background="#086A87">
 
     <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceSmall"
+        android:text="Small Text"
+        android:id="@+id/tv_timeLeft" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Text"
+        android:id="@+id/tv_ActionId" />
+
+    <TextView
         android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -18,7 +31,7 @@ android:background="#086A87">
         android:layout_width="match_parent"
         android:layout_height="0dip"
         android:layout_weight="1"
-        android:gravity="center|bottom"
+        android:gravity="center|center"
         android:padding="20dp" >
 
         <RelativeLayout

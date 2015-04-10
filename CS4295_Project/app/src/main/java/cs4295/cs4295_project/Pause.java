@@ -1,5 +1,6 @@
 package cs4295.cs4295_project;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
@@ -7,12 +8,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class Pause extends ActionBarActivity implements OnClickListener {
 
     private ImageButton next , play , previous;
+    private int timeLeft , actionId ;
+
+    //Testing
+    private TextView time, action;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +33,16 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         play.setOnClickListener(this);
         previous.setOnClickListener(this);
 
+        Intent myIntent = getIntent(); // gets the previously created intent
+        timeLeft = myIntent.getIntExtra("TimeLeft",1);
+        actionId = myIntent.getIntExtra("currentAction",1);
+
+        //Testing
+        time = (TextView)findViewById(R.id.tv_timeLeft);
+        action = (TextView)findViewById(R.id.tv_ActionId);
+
+        time.setText(timeLeft);
+        action.setText(actionId);
     }
 
     @Override
@@ -34,12 +50,18 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.btnNext:
                 Toast.makeText(Pause.this, "Next is clicked!", Toast.LENGTH_SHORT).show();
+
+                //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
+
                 break;
             case R.id.btnPlay:
                 Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
+
+                //Create an Intent -> pass actionId + time -> Start Activity
                 break;
             case R.id.btnPrevious:
                 Toast.makeText(Pause.this, "Previous is clicked!", Toast.LENGTH_SHORT).show();
+
                 break;
         }
     }
