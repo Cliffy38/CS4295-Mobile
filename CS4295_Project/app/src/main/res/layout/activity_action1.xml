@@ -5,10 +5,6 @@
     android:orientation="vertical"
     android:background="#086A87">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="30dp">
-    </LinearLayout>
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -63,8 +59,6 @@
                 android:text="00&#34;"
                 android:textColor="#fff"
                 android:textSize="45dip"/>
-
-
         </LinearLayout>
 
     </RelativeLayout>

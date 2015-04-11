@@ -43,11 +43,11 @@ public class Pause extends ActionBarActivity implements OnClickListener {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                    next.setBackgroundResource(R.drawable.next_button2);
+                    play.setBackgroundResource(R.drawable.play_button2);
                 }
                 //Log.d("Pressed", "Button pressed");
                 else if (event.getAction() == MotionEvent.ACTION_UP) {
-                    next.setBackgroundResource(R.drawable.next_button);
+                    play.setBackgroundResource(R.drawable.play_button);
                 }
                 //Log.d("Released", "Button released");
                 // TODO Auto-generated method stub
