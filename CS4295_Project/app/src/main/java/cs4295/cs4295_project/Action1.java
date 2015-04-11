@@ -59,24 +59,32 @@ public class Action1 extends ActionBarActivity {
 
                 Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
 
-                String timeLeft = textViewShowTime.getText().toString().replace("\"","");
-                int time = Integer.parseInt(timeLeft);
+                if(! textViewShowTime.getText().equals("Time up!"))
+                {
+                    String timeLeft = textViewShowTime.getText().toString().replace("\"","");
+                    int time = Integer.parseInt(timeLeft);
 
-                ImageView x =  (ImageView)findViewById(R.id.imageView1);
-                //x.getImage
+                    ImageView x =  (ImageView)findViewById(R.id.imageView1);
+                    //x.getImage
 
-                Intent i = new Intent(getApplicationContext() ,Pause.class);
-                i.putExtra("TimeLeft",time);
-                i.putExtra("currentAction", "SecondKeyValue");
+                    Intent i = new Intent(getApplicationContext() ,Pause.class);
+                    i.putExtra("TimeLeft",time);
+                    i.putExtra("currentAction", "SecondKeyValue");
 
-                startActivity(i);
-                finish();
+                    startActivity(i);
+                    finish();
+                }
+                else
+                {
+                    resetTimer();
+                }
+
             }
         });
 
         Intent myIntent = getIntent(); // gets the previously created intent
-        timeLeft = myIntent.getIntExtra("TimeLeft",1);
-        actionId = myIntent.getIntExtra("currentAction",1);
+        //timeLeft = myIntent.getIntExtra("TimeLeft",1);
+        //actionId = myIntent.getIntExtra("currentAction",1);
 
         if(myIntent.getExtras() == null) {
             Toast.makeText(getApplicationContext(), "first time", Toast.LENGTH_LONG).show();
@@ -87,7 +95,8 @@ public class Action1 extends ActionBarActivity {
 
         } else {
             Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
-            timeLeft = 25 ;
+            timeLeft = myIntent.getIntExtra("TimeLeft",1) +1 ;
+            //timeLeft = 25+1 ;
 
             setTimer(time,timeLeft); //30 second
             startTimer();
@@ -103,7 +112,11 @@ public class Action1 extends ActionBarActivity {
         timeBlinkInMilliseconds = (time/2) * 1000;
     }
 
-
+    private void resetTimer()
+    {
+        setTimer(30,30);
+        startTimer();
+    }
 
     private void startTimer() {
 
