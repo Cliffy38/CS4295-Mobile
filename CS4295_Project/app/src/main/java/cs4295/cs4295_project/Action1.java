@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -27,6 +28,9 @@ public class Action1 extends ActionBarActivity {
 
     //For intent
     private LinearLayout layout ;
+    private int timeLeft , actionId ;
+
+    private Vibrator myVib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +38,7 @@ public class Action1 extends ActionBarActivity {
         setContentView(R.layout.activity_action1);
 
         textViewShowTime = (TextView)findViewById(R.id.tvTimeCount);
+        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         //Rotating the ProgressBar
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
@@ -44,6 +49,9 @@ public class Action1 extends ActionBarActivity {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
+                myVib.vibrate(50);
+
                 Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
 
                 String timeLeft = textViewShowTime.getText().toString().replace("\"","");
@@ -60,6 +68,16 @@ public class Action1 extends ActionBarActivity {
                 finish();
             }
         });
+
+        Intent myIntent = getIntent(); // gets the previously created intent
+        timeLeft = myIntent.getIntExtra("TimeLeft",1);
+        actionId = myIntent.getIntExtra("currentAction",1);
+
+        if(myIntent.getExtras() == null) {
+            Toast.makeText(getApplicationContext(), "first time", Toast.LENGTH_LONG).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
+        }
 
         textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalText);
         setTimer(30); //30 second

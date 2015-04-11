@@ -22,7 +22,7 @@
             android:progressDrawable="@drawable/circle_progress_background"
             android:background="@drawable/circle_shape"
             android:max="30"
-            android:progress="29"
+            android:progress="30"
             android:layout_alignParentTop="true"
             android:layout_centerHorizontal="true" />
 

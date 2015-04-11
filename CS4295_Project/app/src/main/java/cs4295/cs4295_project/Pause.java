@@ -3,6 +3,7 @@ package cs4295.cs4295_project;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -21,6 +22,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
     //Testing
     private TextView time, action;
+    private Vibrator myVib;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,10 +32,28 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         next = (ImageButton) findViewById(R.id.btnNext);
         play = (ImageButton) findViewById(R.id.btnPlay);
         previous = (ImageButton) findViewById(R.id.btnPrevious);
+        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         next.setOnClickListener(this);
         play.setOnClickListener(this);
         previous.setOnClickListener(this);
+
+        play.setOnTouchListener(new View.OnTouchListener() {
+
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                if (event.getAction() == MotionEvent.ACTION_DOWN) {
+                    next.setBackgroundResource(R.drawable.next_button2);
+                }
+                //Log.d("Pressed", "Button pressed");
+                else if (event.getAction() == MotionEvent.ACTION_UP) {
+                    next.setBackgroundResource(R.drawable.next_button);
+                }
+                //Log.d("Released", "Button released");
+                // TODO Auto-generated method stub
+                return false;
+            }
+        });
 
         next.setOnTouchListener(new View.OnTouchListener() {
 
@@ -87,17 +107,26 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         switch (v.getId()) {
             case R.id.btnNext:
                 Toast.makeText(Pause.this, "Next is clicked!", Toast.LENGTH_SHORT).show();
-
+                myVib.vibrate(50);
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
 
                 break;
             case R.id.btnPlay:
-                Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
+                //Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
+                myVib.vibrate(50);
+
+                Intent i = new Intent(getApplicationContext() ,Action1.class);
+                i.putExtra("TimeLeft","");
+                i.putExtra("currentAction", "SecondKeyValue");
+
+                startActivity(i);
+                finish();
 
                 //Create an Intent -> pass actionId + time -> Start Activity
                 break;
             case R.id.btnPrevious:
                 Toast.makeText(Pause.this, "Previous is clicked!", Toast.LENGTH_SHORT).show();
+                myVib.vibrate(50);
 
                 break;
         }
