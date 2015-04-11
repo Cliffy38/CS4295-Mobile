@@ -13,6 +13,9 @@
    <string name="y_axis">Y-Axis</string>
    <string name="z_axis">Z-Axis</string>
 
+<!--Pause page-->
+    <string name="pause">PAUSE</string>
+
 <!--Title for menu bar-->
     <string name="action_settings">Settings</string>
     <string name="action_home">Home</string>

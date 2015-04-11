@@ -13,9 +13,4 @@
         android:orderInCategory="200"
         app:showAsAction="always"/>
         <!--android:icon="@drawable/ic_action_settings"/>-->
-    <item android:id="@+id/action_back"
-        android:title="@string/action_back"
-        android:orderInCategory="100"
-        app:showAsAction="always"
-        android:icon="@drawable/ic_action_back"/>
 </menu>

@@ -18,12 +18,12 @@ android:background="#086A87">
         android:id="@+id/tv_ActionId" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/pause"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:layout_marginTop="150dp"
-        android:text="PAUSE"
+        android:text="@string/pause"
         android:textSize="50dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
@@ -55,8 +55,6 @@ android:background="#086A87">
                 android:layout_height="80dip"
                 android:background="@drawable/play_button"
                 android:layout_centerHorizontal="true"
-            />
-
             />
 
             <ImageButton
