@@ -104,20 +104,30 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
+
+        Intent i ;
+
         switch (v.getId()) {
             case R.id.btnNext:
                 Toast.makeText(Pause.this, "Next is clicked!", Toast.LENGTH_SHORT).show();
                 myVib.vibrate(50);
+
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
+                i = new Intent(getApplicationContext() ,Action1.class);
+                i.putExtra("TimeLeft",30);
+                i.putExtra("currentAction",actionId+1);
+
+                startActivity(i);
+                finish();
 
                 break;
             case R.id.btnPlay:
                 //Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
                 myVib.vibrate(50);
 
-                Intent i = new Intent(getApplicationContext() ,Action1.class);
-                i.putExtra("TimeLeft","");
-                i.putExtra("currentAction", "SecondKeyValue");
+                i = new Intent(getApplicationContext() ,Action1.class);
+                i.putExtra("TimeLeft",timeLeft);
+                i.putExtra("currentAction", actionId);
 
                 startActivity(i);
                 finish();
@@ -127,6 +137,13 @@ public class Pause extends ActionBarActivity implements OnClickListener {
             case R.id.btnPrevious:
                 Toast.makeText(Pause.this, "Previous is clicked!", Toast.LENGTH_SHORT).show();
                 myVib.vibrate(50);
+
+                i = new Intent(getApplicationContext() ,Action1.class);
+                i.putExtra("TimeLeft",30);
+                i.putExtra("currentAction",actionId+1);
+
+                startActivity(i);
+                finish();
 
                 break;
         }

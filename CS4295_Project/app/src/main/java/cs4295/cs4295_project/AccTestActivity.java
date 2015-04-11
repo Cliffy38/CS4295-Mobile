@@ -33,7 +33,6 @@ public class AccTestActivity extends ActionBarActivity implements SensorEventLis
     ArrayList<String> record = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ListView list;
-    MenuHandle click;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

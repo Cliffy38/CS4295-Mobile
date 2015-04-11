@@ -26,6 +26,9 @@ public class Action1 extends ActionBarActivity {
     private long timeBlinkInMilliseconds; // start time of start blinking
     private boolean blink; // controls the blinking .. on and off
 
+    //Set timer -> Fixed
+    private int time = 30 ;
+
     //For intent
     private LinearLayout layout ;
     private int timeLeft , actionId ;
@@ -38,6 +41,8 @@ public class Action1 extends ActionBarActivity {
         setContentView(R.layout.activity_action1);
 
         textViewShowTime = (TextView)findViewById(R.id.tvTimeCount);
+        textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalText);
+
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         //Rotating the ProgressBar
@@ -75,63 +80,65 @@ public class Action1 extends ActionBarActivity {
 
         if(myIntent.getExtras() == null) {
             Toast.makeText(getApplicationContext(), "first time", Toast.LENGTH_LONG).show();
+            timeLeft = 30 ;
+
+            setTimer(time,timeLeft); //30 second
+            startTimer();
+
         } else {
             Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
-        }
+            timeLeft = 25 ;
 
-        textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalText);
-        setTimer(30); //30 second
-        startTimer();
+            setTimer(time,timeLeft); //30 second
+            startTimer();
+        }
 
     }
 
-    private void setTimer(int time) {
+    private void setTimer(int time,int timeLeft) {
         mProgressBar.setMax(time);
+        mProgressBar.setProgress(timeLeft);
 
-        totalTimeCountInMilliseconds = time * 1000;
+        totalTimeCountInMilliseconds = timeLeft * 1000;
         timeBlinkInMilliseconds = (time/2) * 1000;
     }
 
+
+
     private void startTimer() {
+
         countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
+        @Override
+        public void onTick(long millisUntilFinished) {
+            long seconds = millisUntilFinished / 1000;
+            //Setting the Progress Bar to decrease wih the timer
+            mProgressBar.setProgress((int) (millisUntilFinished / 1000));
 
-            @Override
-            public void onTick(long millisUntilFinished) {
-                long seconds = millisUntilFinished / 1000;
-                //Setting the Progress Bar to decrease wih the timer
-                mProgressBar.setProgress((int) (millisUntilFinished / 1000));
-                Context context = getApplicationContext();
+            textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalColor);
 
-                textViewShowTime.setTextAppearance(getApplicationContext(),
-                        R.style.normalColor);
+            if (millisUntilFinished < timeBlinkInMilliseconds) {
+                textViewShowTime.setTextAppearance(getApplicationContext(),R.style.blinkText);
+                // change the style of the textview .. giving a red alert style
 
-
-                if (millisUntilFinished < timeBlinkInMilliseconds) {
-                    textViewShowTime.setTextAppearance(getApplicationContext(),
-                            R.style.blinkText);
-                    // change the style of the textview .. giving a red alert style
-
-                    if (blink) {
-                        textViewShowTime.setVisibility(View.VISIBLE);
-                        // if blink is true, textview will be visible
-                    } else {
-                        textViewShowTime.setVisibility(View.VISIBLE);
-                    }
-
-                    blink = !blink; // toggle the value of blink
+                if (blink) {
+                    textViewShowTime.setVisibility(View.VISIBLE);
+                } else {
+                    textViewShowTime.setVisibility(View.VISIBLE);
                 }
 
-                textViewShowTime.setText(String.format("%02d", seconds % 60)+"\"");
-                // format the textview to show the easily readable format
-
+                blink = !blink; // toggle the value of blink
             }
 
-            @Override
-            public void onFinish() {
-                // this function will be called when the timecount is finished
-                textViewShowTime.setText("Time up!");
-                textViewShowTime.setVisibility(View.VISIBLE);
-            }
+            textViewShowTime.setText(String.format("%02d", seconds % 60)+"\"");
+
+        }
+
+        @Override
+        public void onFinish() {
+            // this function will be called when the timecount is finished
+            textViewShowTime.setText("Time up!");
+            textViewShowTime.setVisibility(View.VISIBLE);
+        }
 
         }.start();
     }
