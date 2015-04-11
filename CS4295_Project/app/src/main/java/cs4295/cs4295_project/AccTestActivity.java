@@ -2,14 +2,18 @@ package cs4295.cs4295_project;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Bundle;
+import android.support.v4.app.NavUtils;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
@@ -29,6 +33,7 @@ public class AccTestActivity extends ActionBarActivity implements SensorEventLis
     ArrayList<String> record = new ArrayList<>();
     ArrayAdapter<String> adapter;
     ListView list;
+    MenuHandle click;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -46,6 +51,11 @@ public class AccTestActivity extends ActionBarActivity implements SensorEventLis
                 record);
         list = (ListView)findViewById(R.id.listView);
         list.setAdapter(adapter);
+
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(true);
+
     }
 
     @Override
@@ -68,9 +78,50 @@ public class AccTestActivity extends ActionBarActivity implements SensorEventLis
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
-        inflater.inflate(R.menu.menu_acc_test, menu);
-        return true;
+        inflater.inflate(R.menu.menu_main, menu);
+        return super.onCreateOptionsMenu(menu);
     }
+
+//    @Override
+//    public boolean onOptionsItemSelected(MenuItem item) {
+//        // Handle item selection
+//        Context context = getApplicationContext();
+//        Intent intent = new Intent(context, );
+//        switch (item.getItemId()) {
+//            case R.id.action_home:
+//                intent = click.goTo(context,0);
+//                startActivity(intent);
+//                return true;
+//            case R.id.action_settings:
+//                intent = click.goTo(context,1);
+//                startActivity(intent);
+//                return true;
+//            default:
+//                return super.onOptionsItemSelected(item);
+//        }
+//    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle item selection
+        Intent intent;
+        String className = this.getClass().toString();
+        switch (item.getItemId()) {
+            case R.id.action_home:
+                if (!className.equals("class cs4295.cs4295_project.Home")) {
+                    intent = new Intent(getApplicationContext(), Home.class);
+                    startActivity(intent);
+                }
+                return true;
+            case R.id.action_settings:
+                intent = new Intent(getApplicationContext(), Timer.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
 
     @Override
     public void onSensorChanged(SensorEvent event) {

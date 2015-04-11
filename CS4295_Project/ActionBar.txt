@@ -1,0 +1,11 @@
+1. Add text into onCreate
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+2. Copy and paste the "onCreateOptionsMenu" and "onOptionsItemSelected" from AccTestActivity to the activity you wanted.
+
+3. If you want the activity to have a back button on the top-left corner, add 
+        android:parentActivityName="xxxx"
+into AndroidManifest.xml 
+(Please reference the one in AccTestActivity in AndroidManifest.xml )

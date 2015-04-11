@@ -1,19 +1,20 @@
 <resources>
     <string name="app_name">Fit Fit</string>
-
     <string name="hello_world">Hello world!</string>
-    <string name="action_settings">Settings</string>
     <string name="title_activity_run_setting">Run Setting</string>
 
 <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_activity_run_page">RunPageActivity</string>
-    <string name="title_activity_run">Run</string>
+<!--Title name of Pages-->
     <string name="title_activity_acc_test">Acc Test</string>
+    <string name="title_activity_timer">Timer</string>
 
-
+<!--AccTestActivity-->
    <string name="x_axis">X-Axis</string>
    <string name="y_axis">Y-Axis</string>
    <string name="z_axis">Z-Axis</string>
-    <string name="title_activity_timer">Timer</string>
+
+<!--Title for menu bar-->
+    <string name="action_settings">Settings</string>
+    <string name="action_home">Home</string>
+    <string name="action_back">Back</string>
 </resources>

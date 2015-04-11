@@ -30,7 +30,8 @@
         </activity>
         <activity
             android:name=".AccTestActivity"
-            android:label="@string/title_activity_acc_test" >
+            android:label="@string/title_activity_acc_test"
+            android:parentActivityName=".Home">
         </activity>
         <activity
             android:name=".Timer"
@@ -42,7 +43,8 @@
         </activity>
         <activity
             android:name=".Action1"
-            android:label="Action1" >
+            android:label="Action1"
+            android:parentActivityName=".Home">
         </activity>
     </application>
 
