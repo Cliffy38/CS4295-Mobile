@@ -1,33 +1,30 @@
 package cs4295.cs4295_project;
 
 import android.content.Intent;
-import android.support.v4.app.NavUtils;
+import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
-import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.Toast;
 
 
 public class Home extends ActionBarActivity {
 
-    private Button start ;
+    private Button start;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        start = (Button)findViewById(R.id.WorkOutButton) ;
+        start = (Button) findViewById(R.id.WorkOutButton);
         start.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v){
-                Intent i = new Intent(getApplicationContext() ,Action1.class);
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Action1.class);
                 startActivity(i);
             }
         });

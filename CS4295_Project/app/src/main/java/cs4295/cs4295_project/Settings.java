@@ -1,36 +1,25 @@
 package cs4295.cs4295_project;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
-import android.support.v7.app.ActionBarActivity;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.util.Log;
+import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
-import android.widget.ListView;
-import android.content.SharedPreferences;
-import android.widget.TextView;
-
-import java.util.ArrayList;
-
-import static android.content.Context.*;
 
 
 public class Settings extends ActionBarActivity {
-
 
 
     Button repeatView;
     Button workView;
     Button breakView;
     int repeat;
-    String exerciseTime;
-    String breakTime;
+    int exerciseTime;
+    int breakTime;
     SharedPreferences settingsPrefs;
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> adapterValues;
@@ -42,29 +31,29 @@ public class Settings extends ActionBarActivity {
         setContentView(R.layout.activity_settings);
         mcontext = getApplicationContext();
 
-        settingsPrefs=getSharedPreferences("FitBo", MODE_PRIVATE);
+        settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
 
 
-
-        repeat = settingsPrefs.getInt(getString(R.string.repeat),1);
-        exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
-        breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
+        repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
+        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 30);
+        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 10);
 
         repeatView = (Button) findViewById(R.id.Repetition);
         workView = (Button) findViewById(R.id.Workout);
         breakView = (Button) findViewById(R.id.Break);
 
         repeatView.setText(Integer.toString(repeat));
-        workView.setText(exerciseTime);
-        breakView.setText(breakTime);
+        workView.setText(Integer.toString(exerciseTime));
+        breakView.setText(Integer.toString(breakTime));
 
         repeatView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-               Repeat dialog = new Repeat(Settings.this,new Repeat.DialogListener() {
+                RepeatDialog dialog = new RepeatDialog(Settings.this, new RepeatDialog.DialogListener() {
                     public void cancelled() {
                         // do your code here
                     }
+
                     public void ready(int n) {
                         SharedPreferences.Editor editor = settingsPrefs.edit();
                         editor.putInt(getString(R.string.repeat), n);
@@ -78,6 +67,47 @@ public class Settings extends ActionBarActivity {
             }
         });
 
+        workView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                ExeciseTimeDialog dialog = new ExeciseTimeDialog(Settings.this, new ExeciseTimeDialog.DialogListener() {
+                    public void cancelled() {
+                        // do your code here
+                    }
+
+                    public void ready(int n) {
+                        SharedPreferences.Editor editor = settingsPrefs.edit();
+                        editor.putInt(getString(R.string.exerciseTime), n);
+                        editor.commit();
+                        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 1);
+                        workView.setText(Integer.toString(exerciseTime));
+                    }
+                });
+                dialog.show();
+
+            }
+        });
+
+        breakView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                RestDialog dialog = new RestDialog(Settings.this, new RestDialog.DialogListener() {
+                    public void cancelled() {
+                        // do your code here
+                    }
+
+                    public void ready(int n) {
+                        SharedPreferences.Editor editor = settingsPrefs.edit();
+                        editor.putInt(getString(R.string.breakTime), n);
+                        editor.commit();
+                        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 1);
+                        breakView.setText(Integer.toString(breakTime));
+                    }
+                });
+                dialog.show();
+
+            }
+        });
 
     }
 

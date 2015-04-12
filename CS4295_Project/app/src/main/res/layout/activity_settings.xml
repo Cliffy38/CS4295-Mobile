@@ -1,50 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:orientation="vertical" android:layout_width="match_parent"
+    android:id="@+id/Setting"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/Setting">
+    android:orientation="vertical">
 
     <TextView
         android:id="@+id/settingTitle"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:paddingTop="7dp"
+        android:lines="1"
         android:paddingBottom="0dp"
         android:paddingLeft="0dp"
         android:paddingRight="0dp"
-        android:textSize="18sp"
-        android:textColor="#000000"
-        android:lines="1"
+        android:paddingTop="7dp"
         android:text="SETTINGS"
-        android:textAlignment="center">
-    </TextView>
+        android:textAlignment="center"
+        android:textColor="#000000"
+        android:textSize="18sp"></TextView>
 
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/settingTitle1"
                 android:layout_width="@dimen/abc_panel_menu_list_width"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingTop="7dp"
+                android:lines="1"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:lines="1"
+                android:paddingTop="7dp"
                 android:text="Repetition"
-                android:textAlignment="center">
-            </TextView>
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18sp"></TextView>
 
             <Button
                 android:id="@+id/Repetition"
@@ -52,90 +51,86 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
 
-                android:paddingTop="7dp"
+                android:lines="1"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:textSize="18sp"
+                android:paddingTop="7dp"
+                android:text="0"
                 android:textColor="#000000"
-                android:lines="1"
-                android:text="0">
-            </Button>
+                android:textSize="18sp"></Button>
         </LinearLayout>
+
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/settingTitle2"
                 android:layout_width="@dimen/abc_panel_menu_list_width"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingTop="7dp"
+                android:lines="1"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:lines="1"
+                android:paddingTop="7dp"
                 android:text="Workout Duration"
-                android:textAlignment="center">
-            </TextView>
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18sp"></TextView>
 
             <Button
                 android:id="@+id/Workout"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
 
-                android:paddingTop="7dp"
+                android:gravity="center"
+                android:lines="1"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:gravity="center"
-                android:textSize="18sp"
+                android:paddingTop="7dp"
+                android:text="0"
                 android:textColor="#000000"
-                android:lines="1"
-                android:text="0">
-            </Button>
+                android:textSize="18sp"></Button>
         </LinearLayout>
 
         <LinearLayout
-            android:orientation="horizontal"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
 
             <TextView
                 android:id="@+id/settingTitle3"
                 android:layout_width="@dimen/abc_panel_menu_list_width"
                 android:layout_height="wrap_content"
                 android:gravity="center_horizontal"
-                android:paddingTop="7dp"
+                android:lines="1"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
-                android:textSize="18sp"
-                android:textColor="#000000"
-                android:lines="1"
+                android:paddingTop="7dp"
                 android:text="Break Duration"
-                android:textAlignment="center">
-            </TextView>
+                android:textAlignment="center"
+                android:textColor="#000000"
+                android:textSize="18sp"></TextView>
 
             <Button
                 android:id="@+id/Break"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:paddingTop="7dp"
+                android:lines="1"
                 android:paddingBottom="0dp"
                 android:paddingLeft="0dp"
                 android:paddingRight="0dp"
 
-                android:textSize="18sp"
+                android:paddingTop="7dp"
+                android:text="0"
                 android:textColor="#000000"
-                android:lines="1"
-                android:text="0">
-            </Button>
+                android:textSize="18sp"></Button>
         </LinearLayout>
     </LinearLayout>
 
