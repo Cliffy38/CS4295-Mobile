@@ -74,31 +74,7 @@ public class Settings extends ActionBarActivity {
                     }
                 });
                 dialog.show();
-//                AlertDialog.Builder builder = new AlertDialog.Builder(mcontext);
-//// Add the buttons
-//                builder.setPositiveButton("ok", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User clicked OK button
-//                    }
-//                });
-//                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                    public void onClick(DialogInterface dialog, int id) {
-//                        // User cancelled the dialog
-//                    }
-//                });
-//// Set other dialog properties
-//
-//// Create the AlertDialog
-//                AlertDialog dialog = builder.create();
-//
-//                dialog.show();
-//                AlertDialog.Builder MyAlertDialog = new AlertDialog.Builder(Settings.this);
-//
-//                MyAlertDialog.setTitle("標題");
-//
-//                MyAlertDialog.setMessage("我是內容");
-//
-//                MyAlertDialog.show();
+
             }
         });
 
