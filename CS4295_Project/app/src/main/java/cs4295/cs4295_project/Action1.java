@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,12 +16,20 @@ import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+
 
 public class Action1 extends ActionBarActivity {
 
     private ProgressBar mProgressBar;
     private TextView textViewShowTime;
     private CountDownTimer countDownTimer; // built in android class
+    //for switching images
+    private int[] imgNum = {
+            R.drawable.action1,R.drawable.action2,R.drawable.action3,R.drawable.action4,
+            R.drawable.action5,R.drawable.action6,R.drawable.action2,R.drawable.action8,
+            R.drawable.action9,R.drawable.action10,R.drawable.action11,R.drawable.action12
+    };
 
     private long totalTimeCountInMilliseconds; // total count down time in milliseconds
     private long timeBlinkInMilliseconds; // start time of start blinking
@@ -32,6 +41,7 @@ public class Action1 extends ActionBarActivity {
     //For intent
     private LinearLayout layout ;
     private int timeLeft , actionId ;
+    private boolean countDownEnd = false; //see if timer finished
 
     private Vibrator myVib;
 
@@ -39,11 +49,23 @@ public class Action1 extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_action1);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(true);
+
+        Intent myIntent = getIntent(); // gets the previously created intent
+        timeLeft = myIntent.getIntExtra("TimeLeft",30);
+        actionId = myIntent.getIntExtra("currentAction",0);
+
+        ImageView img = (ImageView)findViewById(R.id.imageView1);
+        img.setImageResource(imgNum[actionId]);
+        TextView roundNum = (TextView)findViewById(R.id.tvRound);
+        roundNum.setText("Round "+ (actionId+1));
+
+        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         textViewShowTime = (TextView)findViewById(R.id.tvTimeCount);
         textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalText);
-
-        myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
         //Rotating the ProgressBar
         mProgressBar = (ProgressBar) findViewById(R.id.progressbar);
@@ -54,37 +76,18 @@ public class Action1 extends ActionBarActivity {
         layout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 myVib.vibrate(50);
 
                 Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
 
-                if(! textViewShowTime.getText().equals("Time up!"))
-                {
-                    String timeLeft = textViewShowTime.getText().toString().replace("\"","");
-                    int time = Integer.parseInt(timeLeft);
-
-                    ImageView x =  (ImageView)findViewById(R.id.imageView1);
-                    //x.getImage
-
-                    Intent i = new Intent(getApplicationContext() ,Pause.class);
-                    i.putExtra("TimeLeft",time);
-                    i.putExtra("currentAction", "SecondKeyValue");
-
-                    startActivity(i);
-                    finish();
+                if(! countDownEnd) {
+                    pauseHandle();
                 }
-                else
-                {
+                else {
                     resetTimer();
                 }
-
             }
         });
-
-        Intent myIntent = getIntent(); // gets the previously created intent
-        //timeLeft = myIntent.getIntExtra("TimeLeft",1);
-        //actionId = myIntent.getIntExtra("currentAction",1);
 
         if(myIntent.getExtras() == null) {
             Toast.makeText(getApplicationContext(), "first time", Toast.LENGTH_LONG).show();
@@ -93,7 +96,8 @@ public class Action1 extends ActionBarActivity {
             setTimer(time,timeLeft); //30 second
             startTimer();
 
-        } else {
+        }
+        else {
             Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
             timeLeft = myIntent.getIntExtra("TimeLeft",1) +1 ;
             //timeLeft = 25+1 ;
@@ -104,6 +108,16 @@ public class Action1 extends ActionBarActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+    }
+
     private void setTimer(int time,int timeLeft) {
         mProgressBar.setMax(time);
         mProgressBar.setProgress(timeLeft);
@@ -112,8 +126,7 @@ public class Action1 extends ActionBarActivity {
         timeBlinkInMilliseconds = (time/2) * 1000;
     }
 
-    private void resetTimer()
-    {
+    private void resetTimer() {
         setTimer(30,30);
         startTimer();
     }
@@ -151,10 +164,26 @@ public class Action1 extends ActionBarActivity {
             // this function will be called when the timecount is finished
             textViewShowTime.setText("Time up!");
             textViewShowTime.setVisibility(View.VISIBLE);
+            countDownEnd = true;
         }
 
         }.start();
     }
+
+    private void pauseHandle(){
+        String timeLeft = textViewShowTime.getText().toString().replace("\"","");
+        int time = Integer.parseInt(timeLeft);
+
+        ImageView x =  (ImageView)findViewById(R.id.imageView1);
+        //x.getImage
+        Intent i = new Intent(getApplicationContext() ,Pause.class);
+        i.putExtra("TimeLeft",time);
+        i.putExtra("currentAction", actionId);
+
+        startActivity(i);
+        finish();
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

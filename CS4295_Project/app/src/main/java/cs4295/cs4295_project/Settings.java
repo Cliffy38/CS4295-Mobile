@@ -3,6 +3,7 @@ package cs4295.cs4295_project;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -12,8 +13,6 @@ import android.widget.Button;
 
 
 public class Settings extends ActionBarActivity {
-
-
     Button repeatView;
     Button workView;
     Button breakView;
@@ -29,10 +28,12 @@ public class Settings extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.setDisplayShowTitleEnabled(false);
+        actionBar.setDisplayShowHomeEnabled(true);
+
         mcontext = getApplicationContext();
-
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
-
 
         repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
         exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 30);

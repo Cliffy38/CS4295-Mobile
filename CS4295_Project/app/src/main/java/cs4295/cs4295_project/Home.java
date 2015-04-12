@@ -55,7 +55,7 @@ public class Home extends ActionBarActivity {
                 }
                 return true;
             case R.id.action_settings:
-                intent = new Intent(getApplicationContext(), Timer.class);
+                intent = new Intent(getApplicationContext(), Settings.class);
                 startActivity(intent);
                 return true;
             default:

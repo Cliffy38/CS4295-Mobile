@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -28,6 +29,8 @@ public class Pause extends ActionBarActivity implements OnClickListener {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pause);
+        ActionBar actionBar = getSupportActionBar();
+        actionBar.hide();
 
         next = (ImageButton) findViewById(R.id.btnNext);
         play = (ImageButton) findViewById(R.id.btnPlay);
@@ -39,7 +42,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         previous.setOnClickListener(this);
 
         play.setOnTouchListener(new View.OnTouchListener() {
-
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -56,7 +58,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         });
 
         next.setOnTouchListener(new View.OnTouchListener() {
-
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -73,7 +74,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         });
 
         previous.setOnTouchListener(new View.OnTouchListener() {
-
             @Override
             public boolean onTouch(View v, MotionEvent event) {
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -89,10 +89,9 @@ public class Pause extends ActionBarActivity implements OnClickListener {
             }
         });
 
-
         Intent myIntent = getIntent(); // gets the previously created intent
         timeLeft = myIntent.getIntExtra("TimeLeft",1);
-        actionId = myIntent.getIntExtra("currentAction",1);
+        actionId = myIntent.getIntExtra("currentAction",0);
 
         //Testing
         time = (TextView)findViewById(R.id.tv_timeLeft);
@@ -104,9 +103,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
     @Override
     public void onClick(View v) {
-
         Intent i ;
-
         switch (v.getId()) {
             case R.id.btnNext:
                 Toast.makeText(Pause.this, "Next is clicked!", Toast.LENGTH_SHORT).show();
@@ -140,7 +137,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
                 i = new Intent(getApplicationContext() ,Action1.class);
                 i.putExtra("TimeLeft",30);
-                i.putExtra("currentAction",actionId+1);
+                i.putExtra("currentAction",actionId);
 
                 startActivity(i);
                 finish();
