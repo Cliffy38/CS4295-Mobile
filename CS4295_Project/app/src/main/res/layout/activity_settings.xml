@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/Setting">
+
+    <TextView
+        android:id="@+id/settingTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingTop="7dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
+        android:paddingRight="0dp"
+        android:textSize="18sp"
+        android:textColor="#000000"
+        android:lines="1"
+        android:text="SETTINGS"
+        android:textAlignment="center">
+    </TextView>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/settingTitle1"
+                android:layout_width="@dimen/abc_panel_menu_list_width"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingTop="7dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lines="1"
+                android:text="Repetition"
+                android:textAlignment="center">
+            </TextView>
+
+            <Button
+                android:id="@+id/Repetition"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+
+                android:paddingTop="7dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lines="1"
+                android:text="0">
+            </Button>
+        </LinearLayout>
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/settingTitle2"
+                android:layout_width="@dimen/abc_panel_menu_list_width"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingTop="7dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lines="1"
+                android:text="Workout Duration"
+                android:textAlignment="center">
+            </TextView>
+
+            <Button
+                android:id="@+id/Workout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:paddingTop="7dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:gravity="center"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lines="1"
+                android:text="0">
+            </Button>
+        </LinearLayout>
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/settingTitle3"
+                android:layout_width="@dimen/abc_panel_menu_list_width"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal"
+                android:paddingTop="7dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lines="1"
+                android:text="Break Duration"
+                android:textAlignment="center">
+            </TextView>
+
+            <Button
+                android:id="@+id/Break"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="7dp"
+                android:paddingBottom="0dp"
+                android:paddingLeft="0dp"
+                android:paddingRight="0dp"
+
+                android:textSize="18sp"
+                android:textColor="#000000"
+                android:lines="1"
+                android:text="0">
+            </Button>
+        </LinearLayout>
+    </LinearLayout>
+
+</LinearLayout>
