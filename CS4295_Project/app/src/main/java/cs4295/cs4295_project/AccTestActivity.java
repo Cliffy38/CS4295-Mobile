@@ -30,7 +30,7 @@ public class AccTestActivity extends ActionBarActivity implements SensorEventLis
     private Sensor mAccelerometer;
     private final float NOISE = (float) 2.0;
     private TextClock textClock;
-    ArrayList<String> record = new ArrayList<>();
+    ArrayList<String> record = new ArrayList<String>();
     ArrayAdapter<String> adapter;
     ListView list;
 
