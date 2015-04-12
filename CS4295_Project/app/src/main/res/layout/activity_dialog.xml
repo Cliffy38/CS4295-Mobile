@@ -1,6 +1,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="200dp"
-    android:layout_height="150dp" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="200dp"
+    android:layout_height="150dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
@@ -11,30 +13,33 @@
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:textAlignment="center"
-        android:background="#ff00b8ff"/>
+        android:textColor="#ffffff"
+        android:background="#ff00b8ff"
+        android:textSize="12sp"
+        android:autoText="false"/>
 
     <Spinner
         android:id="@+id/dialog_spinner"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
         android:layout_marginTop="10dp"
-        />
+        android:scrollbarSize="5dp"/>
 
     <Button
-    android:id="@+id/dialogOK"
-    android:layout_width="80dp"
-    android:layout_height="wrap_content"
-    android:text="Done"
-    android:layout_below="@id/dialog_spinner"
-    />
+        android:id="@+id/dialogOK"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:paddingRight="5dp"
+        android:text="Done"
+        android:layout_below="@id/dialog_spinner"/>
 
     <Button
         android:id="@+id/dialogCancel"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
+        android:paddingLeft="5dp"
         android:text="Cancel"
         android:layout_below="@id/dialog_spinner"
-        android:layout_toRightOf="@id/dialogOK"
-     />
+        android:layout_toRightOf="@id/dialogOK"/>
 
 </RelativeLayout>

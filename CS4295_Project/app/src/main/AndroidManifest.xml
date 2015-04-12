@@ -33,21 +33,21 @@
         <activity
             android:name=".AccTestActivity"
             android:label="@string/title_activity_acc_test"
-            android:parentActivityName=".Home"></activity>
+            android:parentActivityName=".Home"/>
         <activity
             android:name=".Timer"
-            android:label="@string/title_activity_timer"></activity>
+            android:label="@string/title_activity_timer"/>
         <activity
             android:name=".Pause"
-            android:label="Pause"></activity>
+            android:label="Pause"/>
         <activity
             android:name=".Action1"
             android:label="Action1"
-            android:parentActivityName=".Home"></activity>
+            android:parentActivityName=".Home"/>
         <activity
             android:name=".Settings"
-            android:label="@string/title_activity_settings"></activity>
-
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".Home"/>
 
     </application>
 

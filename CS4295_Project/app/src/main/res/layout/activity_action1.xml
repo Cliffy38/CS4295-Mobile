@@ -1,9 +1,9 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/LinearLayout1"
+    android:background="@drawable/gradient"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#086A87">
+    android:orientation="vertical">
 
 
     <RelativeLayout
@@ -45,7 +45,6 @@
                 android:id="@+id/tvRound"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Round 1"
                 android:layout_gravity="center_horizontal|center"
                 android:textColor="#fff"
                 android:textSize="45dip"/>
@@ -73,8 +72,7 @@
         <ImageView
             android:id="@+id/imageView1"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/action1" />
+            android:layout_height="wrap_content"/>
 
     </LinearLayout>
 

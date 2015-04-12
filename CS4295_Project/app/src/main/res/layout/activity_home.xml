@@ -19,11 +19,12 @@
         android:layout_alignParentTop="true"
         android:layout_marginTop="77dp"
         android:background="#ff000000"
-        android:text="FitBro   "
+        android:text=" FitBro "
 
         android:textColor="#ffffffff"
         android:textSize="60sp"
-        android:textStyle="bold|italic" />
+        android:textStyle="bold|italic"
+        />
 
     <ImageButton
         android:id="@+id/Setting"

@@ -2,29 +2,32 @@
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
-android:background="#086A87">
+android:background="@drawable/gradient">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:text="Small Text"
-        android:id="@+id/tv_timeLeft" />
+        android:id="@+id/tv_timeLeft"
+        android:visibility="invisible"/>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="New Text"
-        android:id="@+id/tv_ActionId" />
+        android:id="@+id/tv_ActionId"
+        android:visibility="invisible"/>
 
     <TextView
         android:id="@+id/pause"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="130dp"
+        android:paddingBottom="40dp"
         android:text="@string/pause"
-        android:textSize="50dp"
+        android:textSize="60dp"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <LinearLayout
