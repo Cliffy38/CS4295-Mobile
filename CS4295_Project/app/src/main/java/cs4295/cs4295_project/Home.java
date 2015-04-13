@@ -9,11 +9,13 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 public class Home extends ActionBarActivity {
 
     private Button start;
+    private ImageButton setting;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +30,16 @@ public class Home extends ActionBarActivity {
                 startActivity(i);
             }
         });
+
+        setting = (ImageButton)findViewById(R.id.Setting);
+        setting.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), Settings.class);
+                startActivity(i);
+            }
+        });
+
 
         ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);

@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 
@@ -17,6 +18,7 @@ public class ExeciseTimeDialog extends Dialog {
     private Context mContext;
     private Spinner mSpinner;
     private DialogListener mReadyListener;
+    private TextView title;
 
 
     public ExeciseTimeDialog() {
@@ -48,6 +50,10 @@ public class ExeciseTimeDialog extends Dialog {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         setContentView(R.layout.activity_dialog);
+
+        title = (TextView)findViewById(R.id.dialog_title);
+        title.setText("WorkOut Duration");
+
 
         mSpinner = (Spinner) findViewById(R.id.dialog_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, mList);
