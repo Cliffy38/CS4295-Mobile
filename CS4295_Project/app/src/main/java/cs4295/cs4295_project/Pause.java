@@ -113,7 +113,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 i = new Intent(getApplicationContext() ,Action1.class);
                 i.putExtra("TimeLeft",30);
                 i.putExtra("currentAction",actionId+1);
-
+                i.putExtra("NeedToAdd_1_sec",false);
                 startActivity(i);
                 finish();
 
@@ -125,6 +125,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 i = new Intent(getApplicationContext() ,Action1.class);
                 i.putExtra("TimeLeft",timeLeft);
                 i.putExtra("currentAction", actionId);
+                i.putExtra("NeedToAdd_1_sec",true);
 
                 startActivity(i);
                 finish();
@@ -138,6 +139,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 i = new Intent(getApplicationContext() ,Action1.class);
                 i.putExtra("TimeLeft",30);
                 i.putExtra("currentAction",actionId);
+                i.putExtra("NeedToAdd_1_sec",false);
 
                 startActivity(i);
                 finish();

@@ -99,8 +99,11 @@ public class Action1 extends ActionBarActivity {
         }
         else {
             Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
-            timeLeft = myIntent.getIntExtra("TimeLeft",1) +1 ;
-            //timeLeft = 25+1 ;
+            boolean needToAddSec = myIntent.getBooleanExtra("NeedToAdd_1_sec",false);
+            if(needToAddSec) {
+                timeLeft = myIntent.getIntExtra("TimeLeft", 1) + 1;
+                //timeLeft = 25+1 ;
+            }
 
             setTimer(time,timeLeft); //30 second
             startTimer();
@@ -127,6 +130,7 @@ public class Action1 extends ActionBarActivity {
     }
 
     private void resetTimer() {
+        countDownEnd = false;
         setTimer(30,30);
         startTimer();
     }
