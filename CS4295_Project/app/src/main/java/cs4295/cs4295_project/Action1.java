@@ -110,6 +110,7 @@ public class Action1 extends ActionBarActivity {
             }
 
             setTimer(time,timeLeft); //30 second
+            textViewShowTime.setText(String.format("%02d", timeLeft % 60)+"\"");
             startTimer();
         }
 
