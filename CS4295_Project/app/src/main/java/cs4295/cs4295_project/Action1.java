@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.CountDownTimer;
+import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -27,7 +28,7 @@ public class Action1 extends ActionBarActivity {
     //for switching images
     private int[] imgNum = {
             R.drawable.action1,R.drawable.action2,R.drawable.action3,R.drawable.action4,
-            R.drawable.action5,R.drawable.action6,R.drawable.action2,R.drawable.action8,
+            R.drawable.action5,R.drawable.action6,R.drawable.action7,R.drawable.action8,
             R.drawable.action9,R.drawable.action10,R.drawable.action11,R.drawable.action12
     };
 
@@ -104,6 +105,9 @@ public class Action1 extends ActionBarActivity {
                 timeLeft = myIntent.getIntExtra("TimeLeft", 1) + 1;
                 //timeLeft = 25+1 ;
             }
+            else{
+                timeLeft = 30;
+            }
 
             setTimer(time,timeLeft); //30 second
             startTimer();
@@ -171,7 +175,16 @@ public class Action1 extends ActionBarActivity {
             countDownEnd = true;
         }
 
-        }.start();
+        };
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 5s = 5000ms
+                countDownTimer.start();
+            }
+        }, 1000);
+
     }
 
     private void pauseHandle(){
@@ -185,6 +198,7 @@ public class Action1 extends ActionBarActivity {
         i.putExtra("currentAction", actionId);
 
         startActivity(i);
+        countDownTimer.onFinish();
         finish();
     }
 
