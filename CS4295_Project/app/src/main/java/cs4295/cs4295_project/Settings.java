@@ -16,9 +16,9 @@ public class Settings extends ActionBarActivity {
     Button repeatView;
     Button workView;
     Button breakView;
-    int repeat;
-    int exerciseTime;
-    int breakTime;
+    String repeat;
+    String exerciseTime;
+    String breakTime;
     SharedPreferences settingsPrefs;
     ArrayAdapter<String> adapter;
     ArrayAdapter<String> adapterValues;
@@ -35,17 +35,17 @@ public class Settings extends ActionBarActivity {
         mcontext = getApplicationContext();
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
 
-        repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
-        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 30);
-        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 10);
+        repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
+        exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
+        breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
 
         repeatView = (Button) findViewById(R.id.Repetition);
         workView = (Button) findViewById(R.id.Workout);
         breakView = (Button) findViewById(R.id.Break);
 
-        repeatView.setText(Integer.toString(repeat));
-        workView.setText(Integer.toString(exerciseTime));
-        breakView.setText(Integer.toString(breakTime));
+        repeatView.setText(repeat);
+        workView.setText(exerciseTime);
+        breakView.setText(breakTime);
 
         repeatView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,12 +55,12 @@ public class Settings extends ActionBarActivity {
                         // do your code here
                     }
 
-                    public void ready(int n) {
+                    public void ready(String n) {
                         SharedPreferences.Editor editor = settingsPrefs.edit();
-                        editor.putInt(getString(R.string.repeat), n);
+                        editor.putString(getString(R.string.repeat), n);
                         editor.commit();
-                        repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
-                        repeatView.setText(Integer.toString(repeat));
+                        repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
+                        repeatView.setText(repeat);
                     }
                 });
                 dialog.show();
@@ -76,12 +76,12 @@ public class Settings extends ActionBarActivity {
                         // do your code here
                     }
 
-                    public void ready(int n) {
+                    public void ready(String n) {
                         SharedPreferences.Editor editor = settingsPrefs.edit();
-                        editor.putInt(getString(R.string.exerciseTime), n);
+                        editor.putString(getString(R.string.exerciseTime), n);
                         editor.commit();
-                        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 1);
-                        workView.setText(Integer.toString(exerciseTime));
+                        exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
+                        workView.setText(exerciseTime);
                     }
                 });
                 dialog.show();
@@ -97,12 +97,12 @@ public class Settings extends ActionBarActivity {
                         // do your code here
                     }
 
-                    public void ready(int n) {
+                    public void ready(String n) {
                         SharedPreferences.Editor editor = settingsPrefs.edit();
-                        editor.putInt(getString(R.string.breakTime), n);
+                        editor.putString(getString(R.string.breakTime), n);
                         editor.commit();
-                        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 1);
-                        breakView.setText(Integer.toString(breakTime));
+                        breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
+                        breakView.setText(breakTime);
                     }
                 });
                 dialog.show();

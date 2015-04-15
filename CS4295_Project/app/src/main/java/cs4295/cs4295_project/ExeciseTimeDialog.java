@@ -64,7 +64,7 @@ public class ExeciseTimeDialog extends Dialog {
         buttonOK.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 int n = mSpinner.getSelectedItemPosition();
-                mReadyListener.ready(n);
+                mReadyListener.ready(mList.get(n));
                 ExeciseTimeDialog.this.dismiss();
             }
         });
@@ -77,7 +77,7 @@ public class ExeciseTimeDialog extends Dialog {
     }
 
     public interface DialogListener {
-        public void ready(int n);
+        public void ready(String n);
 
         public void cancelled();
     }

@@ -58,7 +58,7 @@ public class RepeatDialog extends Dialog {
         buttonOK.setOnClickListener(new android.view.View.OnClickListener() {
             public void onClick(View v) {
                 int n = mSpinner.getSelectedItemPosition();
-                mReadyListener.ready(n);
+                mReadyListener.ready(mList.get(n));
                 RepeatDialog.this.dismiss();
             }
         });
@@ -71,7 +71,7 @@ public class RepeatDialog extends Dialog {
     }
 
     public interface DialogListener {
-        public void ready(int n);
+        public void ready(String n);
 
         public void cancelled();
     }

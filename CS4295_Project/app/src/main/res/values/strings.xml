@@ -23,9 +23,9 @@
     <string name="action_back">Back</string>
 
 <!--Setting prefs-->
-    <string name="repeat">repeat</string>
-    <string name="exerciseTime">exercise</string>
-    <string name="breakTime">rest</string>
+    <string name="repeat">repeatTime_Prefs</string>
+    <string name="exerciseTime">exerciseDuration_Prefs</string>
+    <string name="breakTime">restDuration_Prefs</string>
     <string name="title_activity_main">MainActivity</string>
 
 <!-- TODO: Remove or change this placeholder text -->
