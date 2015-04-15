@@ -55,9 +55,9 @@ public class Action1 extends ActionBarActivity {
 
     //Share preference
     SharedPreferences settingsPrefs;
-    int repeat;
-    int exerciseTime;
-    int breakTime;
+    String repeat;
+    String exerciseTime;
+    String breakTime;
 
 
     @Override
@@ -80,9 +80,9 @@ public class Action1 extends ActionBarActivity {
         textViewActionName.setText(actionName[actionId]);
 
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
-        repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
-        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 30);
-        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 10);
+        repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
+        exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
+        breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
