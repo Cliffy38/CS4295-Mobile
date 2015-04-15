@@ -105,9 +105,7 @@ public class Action1 extends ActionBarActivity {
                 timeLeft = myIntent.getIntExtra("TimeLeft", 1) + 1;
                 //timeLeft = 25+1 ;
             }
-            else{
-                timeLeft = 30;
-            }
+
 
             setTimer(time,timeLeft); //30 second
             textViewShowTime.setText(String.format("%02d", timeLeft % 60)+"\"");
@@ -199,7 +197,7 @@ public class Action1 extends ActionBarActivity {
         i.putExtra("currentAction", actionId);
 
         startActivity(i);
-        countDownTimer.onFinish();
+        countDownTimer.cancel();
         finish();
     }
 
