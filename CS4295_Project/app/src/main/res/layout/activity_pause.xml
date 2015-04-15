@@ -5,21 +5,6 @@ android:orientation="vertical"
 android:background="@drawable/gradient">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textAppearance="?android:attr/textAppearanceSmall"
-        android:text="Small Text"
-        android:id="@+id/tv_timeLeft"
-        android:visibility="invisible"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Text"
-        android:id="@+id/tv_ActionId"
-        android:visibility="invisible"/>
-
-    <TextView
         android:id="@+id/pause"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

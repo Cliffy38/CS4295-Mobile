@@ -2,9 +2,9 @@ package cs4295.cs4295_project;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.ActionBarActivity;
@@ -16,21 +16,28 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
-
-import java.util.ArrayList;
+import android.os.Handler;
 
 
 public class Action1 extends ActionBarActivity {
 
     private ProgressBar mProgressBar;
     private TextView textViewShowTime;
+    private TextView textViewActionName;
     private CountDownTimer countDownTimer; // built in android class
+
     //for switching images
     private int[] imgNum = {
             R.drawable.action1,R.drawable.action2,R.drawable.action3,R.drawable.action4,
             R.drawable.action5,R.drawable.action6,R.drawable.action7,R.drawable.action8,
             R.drawable.action9,R.drawable.action10,R.drawable.action11,R.drawable.action12
     };
+
+    private String[] actionName ={
+            "Jumping Jacks", "Wall Sit","Push Up","Abdominal Crunch","Step up Onto Chair",
+            "Squat","Triceps Dip On Chair", "Plank", "High Knees/Running", "Lunge",
+            "Push-Up and Rotation", "Right Side Plank", "Left Side Plank"
+    } ;
 
     private long totalTimeCountInMilliseconds; // total count down time in milliseconds
     private long timeBlinkInMilliseconds; // start time of start blinking
@@ -42,9 +49,16 @@ public class Action1 extends ActionBarActivity {
     //For intent
     private LinearLayout layout ;
     private int timeLeft , actionId ;
-    private boolean countDownEnd = false; //see if timer finished
+    private boolean countDownEnd = false; // if countDownEnd = true -> Times up
 
     private Vibrator myVib;
+
+    //Share preference
+    SharedPreferences settingsPrefs;
+    int repeat;
+    int exerciseTime;
+    int breakTime;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,13 +69,20 @@ public class Action1 extends ActionBarActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         Intent myIntent = getIntent(); // gets the previously created intent
-        timeLeft = myIntent.getIntExtra("TimeLeft",30);
+        timeLeft = myIntent.getIntExtra("TimeLeft",30);// get share preference
         actionId = myIntent.getIntExtra("currentAction",0);
 
         ImageView img = (ImageView)findViewById(R.id.imageView1);
         img.setImageResource(imgNum[actionId]);
         TextView roundNum = (TextView)findViewById(R.id.tvRound);
         roundNum.setText("Round "+ (actionId+1));
+        textViewActionName = (TextView)findViewById(R.id.tvActionName);
+        textViewActionName.setText(actionName[actionId]);
+
+        settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
+        repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
+        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 30);
+        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 10);
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -91,27 +112,29 @@ public class Action1 extends ActionBarActivity {
         });
 
         if(myIntent.getExtras() == null) {
-            Toast.makeText(getApplicationContext(), "first time", Toast.LENGTH_LONG).show();
+            String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
+            Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
             timeLeft = 30 ;
-
             setTimer(time,timeLeft); //30 second
             startTimer();
 
         }
         else {
             Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
-            boolean needToAddSec = myIntent.getBooleanExtra("NeedToAdd_1_sec",false);
-            if(needToAddSec) {
-                timeLeft = myIntent.getIntExtra("TimeLeft", 1) + 1;
-                //timeLeft = 25+1 ;
+
+            if(myIntent.getBooleanExtra("ChangeAction",false)) {
+                //Set to the pause time
+                timeLeft = myIntent.getIntExtra("TimeLeft", 1);
+            }
+            else{
+                //Change Action -> Reset Timer
+                timeLeft = 30;
             }
 
-
-            setTimer(time,timeLeft); //30 second
             textViewShowTime.setText(String.format("%02d", timeLeft % 60)+"\"");
+            setTimer(time,timeLeft); //30 second
             startTimer();
         }
-
     }
 
     @Override
@@ -141,48 +164,61 @@ public class Action1 extends ActionBarActivity {
     private void startTimer() {
 
         countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
-        @Override
-        public void onTick(long millisUntilFinished) {
-            long seconds = millisUntilFinished / 1000;
-            //Setting the Progress Bar to decrease wih the timer
-            mProgressBar.setProgress((int) (millisUntilFinished / 1000));
+            @Override
+            public void onTick(long millisUntilFinished) {
+                long seconds = millisUntilFinished / 1000;
+                //Setting the Progress Bar to decrease wih the timer
+                mProgressBar.setProgress((int) (millisUntilFinished / 1000));
 
-            textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalColor);
+                textViewShowTime.setTextAppearance(getApplicationContext(),R.style.normalColor);
 
-            if (millisUntilFinished < timeBlinkInMilliseconds) {
-                textViewShowTime.setTextAppearance(getApplicationContext(),R.style.blinkText);
-                // change the style of the textview .. giving a red alert style
+                if (millisUntilFinished < timeBlinkInMilliseconds) {
+                    textViewShowTime.setTextAppearance(getApplicationContext(),R.style.blinkText);
+                    // change the style of the textview -> giving a red alert style
 
-                if (blink) {
-                    textViewShowTime.setVisibility(View.VISIBLE);
-                } else {
-                    textViewShowTime.setVisibility(View.VISIBLE);
+                    if (blink) {
+                        textViewShowTime.setVisibility(View.VISIBLE);
+                    } else {
+                        textViewShowTime.setVisibility(View.VISIBLE);
+                    }
+
+                    blink = !blink; // toggle the value of blink
                 }
 
-                blink = !blink; // toggle the value of blink
+                textViewShowTime.setText(String.format("%02d", seconds % 60)+"\"");
+
             }
 
-            textViewShowTime.setText(String.format("%02d", seconds % 60)+"\"");
+            @Override
+            public void onFinish() {
+                // this function will be called when the timecount is finished
+                //textViewShowTime.setText("Time up!");
+                //
 
-        }
+                //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
+                Intent i = new Intent(getApplicationContext() ,Action1.class);
+                i.putExtra("TimeLeft",30);
+                i.putExtra("currentAction",actionId+1);
+                i.putExtra("ChangeAction",false);
+                startActivity(i);
+                finish();
 
-        @Override
-        public void onFinish() {
-            // this function will be called when the timecount is finished
-            textViewShowTime.setText("Time up!");
-            textViewShowTime.setVisibility(View.VISIBLE);
-            countDownEnd = true;
-        }
+                //countDownEnd = true;
+            }
 
         };
+                //.start();
+
+        //Not working
         final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Do something after 5s = 5000ms
+                // Do something after 1s = 1000ms
                 countDownTimer.start();
             }
         }, 1000);
+
 
     }
 
@@ -191,13 +227,13 @@ public class Action1 extends ActionBarActivity {
         int time = Integer.parseInt(timeLeft);
 
         ImageView x =  (ImageView)findViewById(R.id.imageView1);
-        //x.getImage
+
         Intent i = new Intent(getApplicationContext() ,Pause.class);
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
 
         startActivity(i);
-        countDownTimer.cancel();
+        //countDownTimer.onFinish();
         finish();
     }
 
