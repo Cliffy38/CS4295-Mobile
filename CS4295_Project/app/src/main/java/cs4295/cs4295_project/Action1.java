@@ -14,8 +14,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.LinearLayout;
 import android.widget.Toast;
+import android.os.Handler;
 
-import java.util.List;
 
 public class Action1 extends ActionBarActivity {
 
@@ -106,13 +106,14 @@ public class Action1 extends ActionBarActivity {
 
             if(myIntent.getBooleanExtra("ChangeAction",false)) {
                 //Set to the pause time
-                timeLeft = myIntent.getIntExtra("TimeLeft", 1) + 1;
+                timeLeft = myIntent.getIntExtra("TimeLeft", 1);
             }
             else{
                 //Change Action -> Reset Timer
                 timeLeft = 30;
             }
 
+            textViewShowTime.setText(String.format("%02d", timeLeft % 60)+"\"");
             setTimer(time,timeLeft); //30 second
             startTimer();
         }
@@ -178,18 +179,19 @@ public class Action1 extends ActionBarActivity {
                 countDownEnd = true;
             }
 
-        }.start();
+        };
+                //.start();
 
         //Not working
-        /*final Handler handler = new Handler();
+        final Handler handler = new Handler();
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Do something after 5s = 5000ms
+                // Do something after 1s = 1000ms
                 countDownTimer.start();
             }
         }, 1000);
-        */
+
 
     }
 
