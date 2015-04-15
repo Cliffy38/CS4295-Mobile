@@ -22,7 +22,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
     private int timeLeft , actionId ;
 
     //Testing
-    private TextView time, action;
     private Vibrator myVib;
 
     @Override
@@ -92,10 +91,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         Intent myIntent = getIntent(); // gets the previously created intent
         timeLeft = myIntent.getIntExtra("TimeLeft",1);
         actionId = myIntent.getIntExtra("currentAction",0);
-
-        //Testing
-        time = (TextView)findViewById(R.id.tv_timeLeft);
-        action = (TextView)findViewById(R.id.tv_ActionId);
 
     }
 
