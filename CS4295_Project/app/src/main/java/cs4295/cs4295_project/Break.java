@@ -18,7 +18,7 @@ import android.widget.Toast;
 import android.os.Handler;
 
 
-public class Action1 extends ActionBarActivity {
+public class Break extends ActionBarActivity {
 
     private ProgressBar mProgressBar;
     private TextView textViewShowTime;
@@ -61,8 +61,7 @@ public class Action1 extends ActionBarActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_action1);
-        ActionBar actionBar = getSupportActionBar();
+        setContentView(R.layout.activity_break);ActionBar actionBar = getSupportActionBar();
         actionBar.setDisplayShowTitleEnabled(false);
         actionBar.setDisplayShowHomeEnabled(true);
 
@@ -135,16 +134,6 @@ public class Action1 extends ActionBarActivity {
             setTimer(time,timeLeft); //30 second
             startTimer();
         }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 
     private void setTimer(int time,int timeLeft) {
@@ -234,10 +223,11 @@ public class Action1 extends ActionBarActivity {
         finish();
     }
 
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_action, menu);
+        getMenuInflater().inflate(R.menu.menu_break, menu);
         return true;
     }
 

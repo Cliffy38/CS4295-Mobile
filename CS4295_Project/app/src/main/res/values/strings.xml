@@ -31,5 +31,6 @@
 <!-- TODO: Remove or change this placeholder text -->
 
     <string name="title_activity_dialog">Dialog</string>
+    <string name="title_activity_break">Break</string>
 
 </resources>
