@@ -1,6 +1,8 @@
 package cs4295.cs4295_project;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -21,6 +23,7 @@ public class Action1 extends ActionBarActivity {
 
     private ProgressBar mProgressBar;
     private TextView textViewShowTime;
+    private TextView textViewActionName;
     private CountDownTimer countDownTimer; // built in android class
 
     //for switching images
@@ -50,6 +53,13 @@ public class Action1 extends ActionBarActivity {
 
     private Vibrator myVib;
 
+    //Share preference
+    SharedPreferences settingsPrefs;
+    int repeat;
+    int exerciseTime;
+    int breakTime;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -66,6 +76,13 @@ public class Action1 extends ActionBarActivity {
         img.setImageResource(imgNum[actionId]);
         TextView roundNum = (TextView)findViewById(R.id.tvRound);
         roundNum.setText("Round "+ (actionId+1));
+        textViewActionName = (TextView)findViewById(R.id.tvActionName);
+        textViewActionName.setText(actionName[actionId]);
+
+        settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
+        repeat = settingsPrefs.getInt(getString(R.string.repeat), 1);
+        exerciseTime = settingsPrefs.getInt(getString(R.string.exerciseTime), 30);
+        breakTime = settingsPrefs.getInt(getString(R.string.breakTime), 10);
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -95,7 +112,8 @@ public class Action1 extends ActionBarActivity {
         });
 
         if(myIntent.getExtras() == null) {
-            Toast.makeText(getApplicationContext(), "first time", Toast.LENGTH_LONG).show();
+            String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
+            Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
             timeLeft = 30 ;
             setTimer(time,timeLeft); //30 second
             startTimer();
@@ -174,9 +192,18 @@ public class Action1 extends ActionBarActivity {
             @Override
             public void onFinish() {
                 // this function will be called when the timecount is finished
-                textViewShowTime.setText("Time up!");
-                textViewShowTime.setVisibility(View.VISIBLE);
-                countDownEnd = true;
+                //textViewShowTime.setText("Time up!");
+                //
+
+                //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
+                Intent i = new Intent(getApplicationContext() ,Action1.class);
+                i.putExtra("TimeLeft",30);
+                i.putExtra("currentAction",actionId+1);
+                i.putExtra("ChangeAction",false);
+                startActivity(i);
+                finish();
+
+                //countDownEnd = true;
             }
 
         };
