@@ -12,16 +12,7 @@
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
         android:orientation="vertical"
-        android:layout_weight="0.3">
-
-        <TextView
-            android:id="@+id/tvReadyToGo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal|center"
-            android:textColor="#fff"
-            android:textSize="45dip"
-            android:text="Ready To Go !"/>
+        android:layout_weight="0.2">
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,7 +20,7 @@
             android:layout_gravity="center_horizontal|center"
             android:textColor="#fff"
             android:textSize="35dip"
-            android:text="The Next :"/>
+            android:text="Ready To Go !"/>
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,7 +29,7 @@
             android:layout_gravity="center_horizontal|center"
             android:text="Push Up"
             android:textColor="#fff"
-            android:textSize="35dip"/>
+            android:textSize="30dip"/>
 
     </LinearLayout>
 
@@ -99,7 +90,7 @@
         android:gravity="center"
         android:orientation="horizontal"
         android:padding="5dp"
-        android:layout_weight="0.3">
+        android:layout_weight="0.4">
 
         <ImageView
             android:id="@+id/imageView1"
