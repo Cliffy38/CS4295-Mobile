@@ -5,123 +5,165 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
-
     <TextView
-        android:id="@+id/settingTitle"
-        android:layout_width="fill_parent"
+        android:id="@+id/WorkSection"
+        android:layout_width="@dimen/abc_panel_menu_list_width"
         android:layout_height="wrap_content"
-        android:gravity="center"
+        android:gravity="left"
         android:lines="1"
-        android:paddingBottom="15dp"
-        android:paddingLeft="-150dp"
+        android:paddingBottom="0dp"
+        android:paddingLeft="0dp"
         android:paddingRight="0dp"
         android:paddingTop="15dp"
-        android:text="SETTINGS"
+        android:text="WorkOut"
         android:textColor="#ffffff"
-        android:textSize="30sp"
+        android:textSize="25sp"
         android:layout_alignParentTop="true"
-        android:layout_alignParentStart="true"></TextView>
-
-    <Button
-        android:id="@+id/Break"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:lines="1"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="7dp"
-        android:text="0"
-        android:textColor="#000000"
-        android:textSize="22sp"
-        android:layout_marginEnd="43dp"
-        android:layout_marginTop="60dp"
-        android:layout_below="@+id/Workout"
-        android:layout_alignParentEnd="true" />
-
-    <Button
-        android:id="@+id/Workout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:gravity="center"
-        android:lines="1"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="7dp"
-        android:text="0"
-        android:textColor="#000000"
-        android:textSize="22sp"
-        android:layout_centerVertical="true"
-        android:layout_alignStart="@+id/Break" />
-
-    <Button
-        android:id="@+id/Repetition"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-
-        android:lines="1"
-        android:paddingBottom="0dp"
-        android:paddingLeft="0dp"
-        android:paddingRight="0dp"
-        android:paddingTop="7dp"
-        android:text="0"
-        android:textColor="#000000"
-        android:textSize="22sp"
-        android:layout_above="@+id/Workout"
-        android:layout_alignStart="@+id/Workout"
-        android:layout_marginBottom="60dp" />
+        android:layout_alignParentStart="true" />
+<LinearLayout
+    android:id="@+id/three_of_setting"
+    android:layout_below="@+id/two_of_setting"
+    android:layout_width="fill_parent"
+    android:layout_height="70dp"
+    android:orientation="vertical"
+    >
 
     <TextView
         android:id="@+id/breakTextView"
-        android:layout_width="@dimen/abc_panel_menu_list_width"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:lines="1"
         android:paddingBottom="0dp"
-        android:paddingLeft="-15dp"
+        android:paddingLeft="55dp"
         android:paddingRight="0dp"
         android:paddingTop="13dp"
-        android:text="Break Duration"
+        android:text="Break Time"
         android:textColor="#ffffff"
         android:textSize="25sp"
-        android:layout_alignTop="@+id/Break"
+         />
+
+    <TextView
+        android:id="@+id/Break"
+        android:layout_width="wrap_content"
+        android:layout_height="30sp"
+        android:gravity="center"
+        android:lines="1"
+
+        android:layout_marginLeft="60dp"
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:layout_below="@+id/repetitionTextView"
+         />
+
+</LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/two_of_setting"
+        android:layout_below="@+id/first_of_setting"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/workoutTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lines="1"
+            android:paddingBottom="0dp"
+            android:paddingLeft="55dp"
+            android:paddingRight="0dp"
+            android:paddingTop="7dp"
+            android:text="Workout Time"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            />
+
+        <TextView
+        android:id="@+id/Workout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="60dp"
+        android:gravity="center"
+        android:lines="1"
+
+
+        android:text="0"
+        android:textColor="#000000"
+        android:textSize="18sp" />
+
+    </LinearLayout>
+    <LinearLayout
+        android:id="@+id/first_of_setting"
+        android:layout_width="fill_parent"
+        android:layout_height="70dp"
+        android:layout_below="@+id/textView"
         android:layout_alignParentStart="true"
-        android:layout_toStartOf="@+id/Break" />
+        android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/workoutTextView"
-        android:layout_width="@dimen/abc_panel_menu_list_width"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:lines="1"
-        android:paddingBottom="0dp"
-        android:paddingLeft="10dp"
-        android:paddingRight="0dp"
-        android:paddingTop="7dp"
-        android:text="Workout Duration"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        android:layout_centerVertical="true"
-        android:layout_toStartOf="@+id/Workout" />
 
-    <TextView
-        android:id="@+id/repetitionTextView"
-        android:layout_width="@dimen/abc_panel_menu_list_width"
-        android:layout_height="wrap_content"
-        android:gravity="center_horizontal"
-        android:lines="1"
-        android:paddingBottom="0dp"
-        android:paddingLeft="-115dp"
-        android:paddingRight="0dp"
-        android:paddingTop="15dp"
-        android:text="Repetition"
-        android:textColor="#ffffff"
-        android:textSize="25sp"
-        android:layout_alignTop="@+id/Repetition"
+
+        <TextView
+            android:id="@+id/repetitionTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:lines="1"
+            android:paddingBottom="0dp"
+            android:paddingLeft="55dp"
+            android:paddingRight="0dp"
+            android:paddingTop="15dp"
+            android:text="Repeat Circuits"
+            android:textColor="#ffffff"
+            android:textSize="25sp"
+            android:layout_alignBottom="@+id/textView"
+            android:layout_alignParentStart="true" />
+
+        <TextView
+            android:id="@+id/Repetition"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_marginLeft="60dp"
+            android:lines="1"
+
+            android:text="0"
+            android:textColor="#000000"
+            android:textSize="18sp"
+            android:layout_below="@+id/repetitionTextView"
+
+            />
+    </LinearLayout>
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#5b5c5c"
+        android:id="@+id/textView"
+        android:layout_below="@+id/WorkSection"
+        android:layout_alignParentStart="true" />
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#5b5c5c"
+        android:layout_below="@+id/first_of_setting"
+        android:layout_alignParentStart="true"
+       />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#5b5c5c"
+        android:layout_below="@+id/two_of_setting"
+        android:layout_alignParentStart="true"
+         />
+
+    <View
+        android:layout_width="fill_parent"
+        android:layout_height="2px"
+        android:background="#5b5c5c"
+        android:layout_below="@+id/three_of_setting"
         android:layout_alignParentStart="true" />
 
 </RelativeLayout>

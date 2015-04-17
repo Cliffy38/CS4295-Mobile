@@ -9,7 +9,7 @@
     tools:context="cs4295.cs4295_project.Repeat">
 
     <TextView
-        android:text="Repetition"
+        android:text="Repeat Circuits"
         android:id="@+id/dialog_title"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
@@ -17,7 +17,7 @@
         android:textAlignment="center"
         android:textColor="#ffffff"
         android:background="#ff00b8ff"
-        android:textSize="12sp"
+        android:textSize="18sp"
         android:autoText="false"/>
 
     <Spinner
