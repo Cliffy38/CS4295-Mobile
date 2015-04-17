@@ -2,6 +2,7 @@ package cs4295.cs4295_project;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -58,6 +59,12 @@ public class Action1 extends ActionBarActivity {
     String exerciseTime;
     String breakTime;
 
+    //Sound
+    private MediaPlayer mp1 ;
+    private MediaPlayer mp2 ;
+    private MediaPlayer mp3 ;
+    private MediaPlayer mpGo ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -77,6 +84,12 @@ public class Action1 extends ActionBarActivity {
         roundNum.setText("Round "+ (actionId+1));
         textViewActionName = (TextView)findViewById(R.id.tvActionName);
         textViewActionName.setText(actionName[actionId]);
+
+        //Get Sound
+        mp1 = MediaPlayer.create(this, R.raw.one);
+        mp2 = MediaPlayer.create(this, R.raw.two);
+        mp3 = MediaPlayer.create(this, R.raw.three);
+        mpGo =MediaPlayer.create(this, R.raw.go);
 
         //Get Share Preference
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
@@ -140,7 +153,7 @@ public class Action1 extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        pauseHandle();
+        //pauseHandle();
     }
 
     @Override
@@ -187,6 +200,22 @@ public class Action1 extends ActionBarActivity {
                 }
 
                 textViewShowTime.setText(seconds+"\"");
+                switch ((int)seconds){
+                    case 0 :
+                        mpGo.start();
+                    case 1:
+                        //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
+                        mp1.start();
+                        break;
+                    case 2 :
+                        //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
+                        mp2.start();
+                        break;
+                    case 3 :
+                        //Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT).show();
+                        mp3.start();
+                        break;
+                }
 
             }
 
