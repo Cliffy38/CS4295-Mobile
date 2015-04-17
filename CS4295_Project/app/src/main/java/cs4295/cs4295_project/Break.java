@@ -186,7 +186,7 @@ public class Break extends ActionBarActivity {
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
                 Intent i = new Intent(getApplicationContext() ,Action1.class);
                 i.putExtra("TimeLeft",30);
-                i.putExtra("currentAction",actionId+1);
+                i.putExtra("currentAction",actionId);
                 i.putExtra("ChangeAction",false);
                 startActivity(i);
                 finish();
@@ -216,6 +216,7 @@ public class Break extends ActionBarActivity {
         Intent i = new Intent(getApplicationContext() ,Pause.class);
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
+        i.putExtra("currentPage","Break");
 
         startActivity(i);
         finish();

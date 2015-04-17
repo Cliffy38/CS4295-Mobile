@@ -91,7 +91,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         Intent myIntent = getIntent(); // gets the previously created intent
         timeLeft = myIntent.getIntExtra("TimeLeft",1);
         actionId = myIntent.getIntExtra("currentAction",0);
-        currentPage = myIntent.getStringExtra("currentAction") ;
+        currentPage = myIntent.getStringExtra("currentPage") ;
     }
 
     @Override
@@ -103,9 +103,9 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 myVib.vibrate(50);
 
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
-                if(currentPage=="Action1")
+                if(currentPage=="Action1") // Action1 -> Pause -> Break(Action2)
                 {
-                    i = new Intent(getApplicationContext() ,Action1.class);
+                    i = new Intent(getApplicationContext() ,Break.class);
                 }
                 else //  currentPage =="Break"
                 {
@@ -122,7 +122,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 //Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
                 myVib.vibrate(50);
 
-                if(currentPage=="Action1")
+                if(currentPage.equals("Action1")) //Action 1 -> Pause -> Action1
                 {
                     i = new Intent(getApplicationContext() ,Action1.class);
                 }
@@ -140,10 +140,10 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 //Create an Intent -> pass actionId + time -> Start Activity
                 break;
             case R.id.btnPrevious:
-                Toast.makeText(Pause.this, "Previous is clicked!", Toast.LENGTH_SHORT).show();
+                Toast.makeText(Pause.this, "Previuso is clicked!", Toast.LENGTH_SHORT).show();
                 myVib.vibrate(50);
 
-                if(currentPage=="Action1")
+                if(currentPage=="Action1") // Action1 -> Pause -> Action0
                 {
                     i = new Intent(getApplicationContext() ,Action1.class);
                 }

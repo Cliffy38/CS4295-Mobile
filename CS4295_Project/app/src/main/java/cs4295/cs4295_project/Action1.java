@@ -222,6 +222,7 @@ public class Action1 extends ActionBarActivity {
         Intent i = new Intent(getApplicationContext() ,Pause.class);
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
+        i.putExtra("currentPage","Action1");
 
         startActivity(i);
         finish();
