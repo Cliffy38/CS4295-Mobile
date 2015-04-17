@@ -26,7 +26,7 @@ public class Home extends ActionBarActivity {
         start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent i = new Intent(getApplicationContext(), Action1.class);
+                Intent i = new Intent(getApplicationContext(), Break.class);
                 startActivity(i);
             }
         });

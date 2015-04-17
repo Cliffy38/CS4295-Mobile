@@ -2,6 +2,7 @@ package cs4295.cs4295_project;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Vibrator;
@@ -58,6 +59,12 @@ public class Break extends ActionBarActivity {
     String exerciseTime;
     String breakTime;
 
+    //Sound
+    private MediaPlayer mp1 ;
+    private MediaPlayer mp2 ;
+    private MediaPlayer mp3 ;
+    private MediaPlayer mpGo ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,21 +75,22 @@ public class Break extends ActionBarActivity {
         Intent myIntent = getIntent(); // gets the previously created intent
         actionId = myIntent.getIntExtra("currentAction",0);
 
-        //
         ImageView img = (ImageView)findViewById(R.id.imageView1);
         img.setImageResource(imgNum[actionId]);
-        //TextView roundNum = (TextView)findViewById(R.id.tvRound);
-        //roundNum.setText("Round "+ (actionId));
         textViewActionName = (TextView)findViewById(R.id.tvActionName);
         textViewActionName.setText(actionName[actionId]);
 
+        //Get Sound
+        mp1 = MediaPlayer.create(this, R.raw.one);
+        mp2 = MediaPlayer.create(this, R.raw.two);
+        mp3 = MediaPlayer.create(this, R.raw.three);
+        mpGo =MediaPlayer.create(this, R.raw.go);
+
         //Get Share Preference
-        /*
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
         repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
         exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
         breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
-        */
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -177,6 +185,22 @@ public class Break extends ActionBarActivity {
                 }
 
                 textViewShowTime.setText(seconds+"\"");
+                switch ((int)seconds){
+                    case 0 :
+                        mpGo.start();
+                    case 1:
+                        //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
+                        mp1.start();
+                        break;
+                    case 2 :
+                        //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
+                        mp2.start();
+                        break;
+                    case 3 :
+                        //Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT).show();
+                        mp3.start();
+                        break;
+                }
 
             }
 
@@ -188,8 +212,9 @@ public class Break extends ActionBarActivity {
                 i.putExtra("TimeLeft",30);
                 i.putExtra("currentAction",actionId);
                 i.putExtra("ChangeAction",false);
-                startActivity(i);
                 finish();
+                startActivity(i);
+
 
             }
 
@@ -204,6 +229,12 @@ public class Break extends ActionBarActivity {
             }
         }, 1000);
 
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        //pauseHandle();
     }
 
     private void pauseHandle(){
