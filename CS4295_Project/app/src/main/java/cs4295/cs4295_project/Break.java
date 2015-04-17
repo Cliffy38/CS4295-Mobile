@@ -81,10 +81,10 @@ public class Break extends ActionBarActivity {
         textViewActionName.setText(actionName[actionId]);
 
         //Get Sound
-        mp1 = MediaPlayer.create(this, R.raw.one);
-        mp2 = MediaPlayer.create(this, R.raw.two);
-        mp3 = MediaPlayer.create(this, R.raw.three);
-        mpGo =MediaPlayer.create(this, R.raw.go);
+        mp1 = MediaPlayer.create(this, R.raw.one2);
+        mp2 = MediaPlayer.create(this, R.raw.two2);
+        mp3 = MediaPlayer.create(this, R.raw.three2);
+        mpGo =MediaPlayer.create(this, R.raw.go2);
 
         //Get Share Preference
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
@@ -188,6 +188,7 @@ public class Break extends ActionBarActivity {
                 switch ((int)seconds){
                     case 0 :
                         mpGo.start();
+                        break;
                     case 1:
                         //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
                         mp1.start();
