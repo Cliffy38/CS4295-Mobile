@@ -209,7 +209,7 @@ public class Break extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        pauseHandle();
+        countDownTimer.cancel();
     }
 
     private void pauseHandle(){
