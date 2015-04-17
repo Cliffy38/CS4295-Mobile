@@ -132,7 +132,7 @@ public class Break extends ActionBarActivity {
                 timeLeft = 10;
             }
 
-            textViewShowTime.setText(String.format("%02d", timeLeft % 60)+"\"");
+            textViewShowTime.setText(timeLeft+"\"");
             setTimer(time,timeLeft); //30 second
             startTimer();
         }
@@ -176,7 +176,7 @@ public class Break extends ActionBarActivity {
                     blink = !blink; // toggle the value of blink
                 }
 
-                textViewShowTime.setText(String.format("%02d", seconds % 60)+"\"");
+                textViewShowTime.setText(seconds+"\"");
 
             }
 
