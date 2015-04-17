@@ -191,21 +191,14 @@ public class Action1 extends ActionBarActivity {
 
             @Override
             public void onFinish() {
-                // this function will be called when the timecount is finished
-                //textViewShowTime.setText("Time up!");
-                //
-
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
-                Intent i = new Intent(getApplicationContext() ,Action1.class);
-                i.putExtra("TimeLeft",30);
+                Intent i = new Intent(getApplicationContext() ,Break.class);
+                i.putExtra("TimeLeft",10); //Set time to 10 sec
                 i.putExtra("currentAction",actionId+1);
-                i.putExtra("ChangeAction",false);
+                //i.putExtra("ChangeAction",false);
                 startActivity(i);
                 finish();
-
-                //countDownEnd = true;
             }
-
         };
 
         final Handler handler = new Handler();

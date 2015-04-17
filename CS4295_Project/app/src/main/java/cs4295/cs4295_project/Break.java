@@ -42,8 +42,8 @@ public class Break extends ActionBarActivity {
     private long timeBlinkInMilliseconds; // start time of start blinking
     private boolean blink; // controls the blinking .. on and off
 
-    //Set timer -> Fixed
-    private int time = 30 ;
+    //Set Break Time
+    private int time = 10 ;
 
     //For intent
     private LinearLayout layout ;
@@ -66,22 +66,23 @@ public class Break extends ActionBarActivity {
         actionBar.setDisplayShowHomeEnabled(true);
 
         Intent myIntent = getIntent(); // gets the previously created intent
-        timeLeft = myIntent.getIntExtra("TimeLeft",30);// get share preference
         actionId = myIntent.getIntExtra("currentAction",0);
 
         //
         ImageView img = (ImageView)findViewById(R.id.imageView1);
         img.setImageResource(imgNum[actionId]);
-        TextView roundNum = (TextView)findViewById(R.id.tvRound);
-        roundNum.setText("Round "+ (actionId+1));
+        //TextView roundNum = (TextView)findViewById(R.id.tvRound);
+        //roundNum.setText("Round "+ (actionId));
         textViewActionName = (TextView)findViewById(R.id.tvActionName);
         textViewActionName.setText(actionName[actionId]);
 
         //Get Share Preference
+        /*
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
         repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
         exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
         breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
+        */
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -113,13 +114,14 @@ public class Break extends ActionBarActivity {
         if(myIntent.getExtras() == null) {
             String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
             Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
-            timeLeft = 30 ;
-            setTimer(time,timeLeft); //30 second
+            timeLeft = 10 ;
+            setTimer(time,timeLeft); //10 second
             startTimer();
 
         }
         else {
-            Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
+            String testing= "Intent Data Here:"+ repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
+            Toast.makeText(getApplicationContext(), testing, Toast.LENGTH_LONG).show();
 
             if(myIntent.getBooleanExtra("ChangeAction",false)) {
                 //Set to the pause time
@@ -127,7 +129,7 @@ public class Break extends ActionBarActivity {
             }
             else{
                 //Change Action -> Reset Timer
-                timeLeft = 30;
+                timeLeft = 10;
             }
 
             textViewShowTime.setText(String.format("%02d", timeLeft % 60)+"\"");
@@ -180,9 +182,6 @@ public class Break extends ActionBarActivity {
 
             @Override
             public void onFinish() {
-                // this function will be called when the timecount is finished
-                //textViewShowTime.setText("Time up!");
-                //
 
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
                 Intent i = new Intent(getApplicationContext() ,Action1.class);
@@ -192,7 +191,6 @@ public class Break extends ActionBarActivity {
                 startActivity(i);
                 finish();
 
-                //countDownEnd = true;
             }
 
         };

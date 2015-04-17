@@ -20,8 +20,8 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
     private ImageButton next , play , previous;
     private int timeLeft , actionId ;
+    private String currentPage ; //For recording the previous pass in page (Action1 -> Pause / Break -> Pause)
 
-    //Testing
     private Vibrator myVib;
 
     @Override
@@ -91,7 +91,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         Intent myIntent = getIntent(); // gets the previously created intent
         timeLeft = myIntent.getIntExtra("TimeLeft",1);
         actionId = myIntent.getIntExtra("currentAction",0);
-
+        currentPage = myIntent.getStringExtra("currentAction") ;
     }
 
     @Override
@@ -103,7 +103,14 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 myVib.vibrate(50);
 
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
-                i = new Intent(getApplicationContext() ,Action1.class);
+                if(currentPage=="Action1")
+                {
+                    i = new Intent(getApplicationContext() ,Action1.class);
+                }
+                else //  currentPage =="Break"
+                {
+                    i = new Intent(getApplicationContext() ,Break.class);
+                }
                 i.putExtra("TimeLeft",30);
                 i.putExtra("currentAction",actionId+1);
                 i.putExtra("ChangeAction",false);
@@ -115,7 +122,14 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 //Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
                 myVib.vibrate(50);
 
-                i = new Intent(getApplicationContext() ,Action1.class);
+                if(currentPage=="Action1")
+                {
+                    i = new Intent(getApplicationContext() ,Action1.class);
+                }
+                else //  currentPage =="Break"
+                {
+                    i = new Intent(getApplicationContext() ,Break.class);
+                }
                 i.putExtra("TimeLeft",timeLeft);
                 i.putExtra("currentAction", actionId);
                 i.putExtra("ChangeAction",true);
@@ -129,7 +143,14 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 Toast.makeText(Pause.this, "Previous is clicked!", Toast.LENGTH_SHORT).show();
                 myVib.vibrate(50);
 
-                i = new Intent(getApplicationContext() ,Action1.class);
+                if(currentPage=="Action1")
+                {
+                    i = new Intent(getApplicationContext() ,Action1.class);
+                }
+                else //  currentPage =="Break"
+                {
+                    i = new Intent(getApplicationContext() ,Break.class);
+                }
                 i.putExtra("TimeLeft",30);
                 i.putExtra("currentAction",actionId);
                 i.putExtra("ChangeAction",false);
