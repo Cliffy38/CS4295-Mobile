@@ -52,7 +52,7 @@ public class ExeciseTimeDialog extends Dialog {
         setContentView(R.layout.activity_dialog);
 
         title = (TextView)findViewById(R.id.dialog_title);
-        title.setText("WorkOut Duration");
+        title.setText("WorkOut Time");
 
 
         mSpinner = (Spinner) findViewById(R.id.dialog_spinner);

@@ -10,12 +10,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 
 public class Settings extends ActionBarActivity {
-    Button repeatView;
-    Button workView;
-    Button breakView;
+    LinearLayout repeatView;
+    LinearLayout workView;
+    LinearLayout breakView;
+    TextView repeatSec;
+    TextView workOutSec;
+    TextView restSec;
     String repeat;
     String exerciseTime;
     String breakTime;
@@ -39,13 +44,17 @@ public class Settings extends ActionBarActivity {
         exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
         breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
 
-        repeatView = (Button) findViewById(R.id.Repetition);
-        workView = (Button) findViewById(R.id.Workout);
-        breakView = (Button) findViewById(R.id.Break);
+        repeatView = (LinearLayout) findViewById(R.id.first_of_setting);
+        workView = (LinearLayout) findViewById(R.id.two_of_setting);
+        breakView = (LinearLayout) findViewById(R.id.three_of_setting);
 
-        repeatView.setText(repeat);
-        workView.setText(exerciseTime);
-        breakView.setText(breakTime);
+        repeatSec = (TextView) findViewById(R.id.Repetition);
+        workOutSec = (TextView) findViewById(R.id.Workout);
+        restSec = (TextView) findViewById(R.id.Break);
+
+        repeatSec.setText(repeat+"times");
+        workOutSec.setText(exerciseTime+"sec");
+        restSec.setText(breakTime+"sec");
 
         repeatView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -60,7 +69,7 @@ public class Settings extends ActionBarActivity {
                         editor.putString(getString(R.string.repeat), n);
                         editor.commit();
                         repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
-                        repeatView.setText(repeat);
+                        repeatSec.setText(repeat+"times");
                     }
                 });
                 dialog.show();
@@ -81,7 +90,7 @@ public class Settings extends ActionBarActivity {
                         editor.putString(getString(R.string.exerciseTime), n);
                         editor.commit();
                         exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
-                        workView.setText(exerciseTime);
+                        workOutSec.setText(exerciseTime+"sec");
                     }
                 });
                 dialog.show();
@@ -102,7 +111,7 @@ public class Settings extends ActionBarActivity {
                         editor.putString(getString(R.string.breakTime), n);
                         editor.commit();
                         breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
-                        breakView.setText(breakTime);
+                        restSec.setText(breakTime+"sec");
                     }
                 });
                 dialog.show();

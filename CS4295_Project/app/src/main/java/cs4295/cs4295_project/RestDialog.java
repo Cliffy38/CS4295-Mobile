@@ -45,7 +45,7 @@ public class RestDialog extends Dialog {
         setContentView(R.layout.activity_dialog);
 
         title = (TextView)findViewById(R.id.dialog_title);
-        title.setText("Break Duration");
+        title.setText("Break Time");
 
         mSpinner = (Spinner) findViewById(R.id.dialog_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, mList);
