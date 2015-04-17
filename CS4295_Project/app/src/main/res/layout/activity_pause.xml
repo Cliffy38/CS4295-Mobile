@@ -2,7 +2,8 @@
 android:layout_width="fill_parent"
 android:layout_height="fill_parent"
 android:orientation="vertical"
-android:background="@drawable/gradient">
+android:background="@drawable/gradient"
+android:id="@+id/pausebg">
 
     <TextView
         android:id="@+id/pause"

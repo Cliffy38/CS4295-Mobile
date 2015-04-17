@@ -15,46 +15,45 @@
         android:id="@+id/home"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignEnd="@+id/Setting"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="77dp"
-        android:background="#ff000000"
-        android:text=" FitBro "
+        android:layout_marginTop="20dp"
+        android:text="FIT BRO"
 
         android:textColor="#ffffffff"
-        android:textSize="60sp"
-        android:textStyle="bold|italic"
-        />
+        android:textSize="85sp"
+        android:textStyle="bold"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
-    <ImageButton
-        android:id="@+id/Setting"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentEnd="true"
-        android:background="@drawable/setting" />
 
+<LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:weightSum="0.5">
     <ImageView
         android:id="@+id/backGroundPhoto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_above="@+id/Setting"
-        android:layout_alignParentStart="true"
-        android:background="@drawable/home_pic" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/home_pic"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true" />
+    </LinearLayout>
+
 
     <Button
         android:id="@+id/WorkOutButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/home"
         android:layout_marginLeft="1dp"
-        android:layout_marginTop="115dp"
-        android:layout_toEndOf="@+id/backGroundPhoto"
         android:background="@drawable/gra_botton"
         android:singleLine="true"
-        android:text="Let's Work Out"
+        android:text="START"
         android:textColor="#fff9f9f9"
-        android:textSize="15sp" />
+        android:textSize="35sp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignEnd="@+id/home"
+        android:layout_alignParentStart="true" />
 
 
 </RelativeLayout>
