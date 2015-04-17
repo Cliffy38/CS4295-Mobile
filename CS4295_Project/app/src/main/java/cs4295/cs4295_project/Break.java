@@ -206,6 +206,12 @@ public class Break extends ActionBarActivity {
 
     }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        pauseHandle();
+    }
+
     private void pauseHandle(){
         String timeLeft = textViewShowTime.getText().toString().replace("\"","");
         int time = Integer.parseInt(timeLeft);

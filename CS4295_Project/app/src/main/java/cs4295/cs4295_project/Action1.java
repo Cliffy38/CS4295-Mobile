@@ -140,6 +140,7 @@ public class Action1 extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
+        pauseHandle();
     }
 
     @Override
