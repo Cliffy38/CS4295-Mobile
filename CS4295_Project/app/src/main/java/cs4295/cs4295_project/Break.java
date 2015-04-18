@@ -206,7 +206,6 @@ public class Break extends ActionBarActivity {
                         mp3.start();
                         break;
                 }
-
             }
 
             @Override
@@ -214,15 +213,12 @@ public class Break extends ActionBarActivity {
 
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
                 Intent i = new Intent(getApplicationContext() ,Action1.class);
-                i.putExtra("TimeLeft",30);
+                i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
                 i.putExtra("currentAction",actionId);
                 i.putExtra("ChangeAction",false);
                 finish();
                 startActivity(i);
-
-
             }
-
         };
 
         final Handler handler = new Handler();
@@ -233,7 +229,6 @@ public class Break extends ActionBarActivity {
                 countDownTimer.start();
             }
         }, 1000);
-
     }
 
     @Override
@@ -253,7 +248,6 @@ public class Break extends ActionBarActivity {
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
         i.putExtra("currentPage","Break");
-
         startActivity(i);
         finish();
     }
@@ -264,6 +258,15 @@ public class Break extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_break, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        //Cancel all activities when back button pressed
+        countDownTimer.cancel();
+        finish();
     }
 
     @Override

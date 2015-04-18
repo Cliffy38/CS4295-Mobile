@@ -147,7 +147,7 @@ public class Action1 extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        countDownTimer.cancel();
+        time = Integer.parseInt(breakTime) ;
         sensor.stopSensor();
     }
 
@@ -214,8 +214,6 @@ public class Action1 extends ActionBarActivity {
                         mp3.start();
                         break;
                 }
-
-
             }
 
             @Override
@@ -224,7 +222,6 @@ public class Action1 extends ActionBarActivity {
                 Intent i = new Intent(getApplicationContext() ,Break.class);
                 i.putExtra("TimeLeft",10); //Set time to 10 sec
                 i.putExtra("currentAction",actionId+1);
-                //i.putExtra("ChangeAction",false);
                 startActivity(i);
                 finish();
             }
@@ -252,7 +249,6 @@ public class Action1 extends ActionBarActivity {
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
         i.putExtra("currentPage","Action1");
-
         startActivity(i);
         finish();
     }
@@ -262,6 +258,16 @@ public class Action1 extends ActionBarActivity {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_action, menu);
         return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        //Cancel all activities when back button pressed
+        countDownTimer.cancel();
+        finish();
+
     }
 
     @Override
