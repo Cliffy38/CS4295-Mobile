@@ -14,20 +14,20 @@ import java.util.ArrayList;
 
 
 public class ExeciseTimeDialog extends Dialog {
+
     private ArrayList<String> mList;
     private Context mContext;
     private Spinner mSpinner;
     private DialogListener mReadyListener;
     private TextView title;
 
-
     public ExeciseTimeDialog() {
         super(null);
     }
 
-
     public ExeciseTimeDialog(Context context, DialogListener readyListener) {
         super(context);
+
         mReadyListener = readyListener;
         mContext = context;
         mList = new ArrayList<String>();
@@ -41,8 +41,6 @@ public class ExeciseTimeDialog extends Dialog {
         mList.add("50");
         mList.add("55");
         mList.add("60");
-
-
     }
 
     @Override
@@ -54,9 +52,10 @@ public class ExeciseTimeDialog extends Dialog {
         title = (TextView)findViewById(R.id.dialog_title);
         title.setText("WorkOut Time");
 
-
         mSpinner = (Spinner) findViewById(R.id.dialog_spinner);
+        //ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(mContext, R.array.ExerciseTime, R.layout.spinnerlayout);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, mList);
+
         mSpinner.setAdapter(adapter);
 
         Button buttonOK = (Button) findViewById(R.id.dialogOK);

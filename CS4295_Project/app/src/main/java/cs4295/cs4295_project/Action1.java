@@ -42,8 +42,8 @@ public class Action1 extends ActionBarActivity {
     private long timeBlinkInMilliseconds; // start time of start blinking
     private boolean blink; // controls the blinking .. on and off
 
-    //Set timer -> Fixed
-    private int time = 30 ;
+    //Set timer From share preference
+    private int time ;
 
     //For intent
     private LinearLayout layout ;
@@ -56,13 +56,13 @@ public class Action1 extends ActionBarActivity {
     String repeat;
     String exerciseTime;
     String breakTime;
+    Boolean SoundOn ;
 
     //Sound
     private MediaPlayer mp1 ;
     private MediaPlayer mp2 ;
     private MediaPlayer mp3 ;
     private MediaPlayer mpStop ;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,7 +89,6 @@ public class Action1 extends ActionBarActivity {
         mp2 = MediaPlayer.create(this, R.raw.two2);
         mp3 = MediaPlayer.create(this, R.raw.three2);
         mpStop =MediaPlayer.create(this, R.raw.stop);
-
 
         //Get Share Preference
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
@@ -121,8 +120,8 @@ public class Action1 extends ActionBarActivity {
         if(myIntent.getExtras() == null) {
             String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
             Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
-            timeLeft = 30 ;
-            setTimer(time,timeLeft); //30 second
+            time = Integer.parseInt(exerciseTime) ;
+            setTimer(time,time); // The exercise time and the timeLeft should be the same
             startTimer();
         }
         else {
@@ -134,11 +133,11 @@ public class Action1 extends ActionBarActivity {
             }
             else{
                 //Change Action -> Reset Timer
-                timeLeft = 30;
+                timeLeft = Integer.parseInt(exerciseTime) ;
             }
 
             textViewShowTime.setText(timeLeft+"\"");
-            setTimer(time,timeLeft); //30 second
+            setTimer(time,timeLeft); //get from share preference
             startTimer();
         }
     }
@@ -167,7 +166,7 @@ public class Action1 extends ActionBarActivity {
     public void resetTimer() {
         sensor.stopSensor();
         countDownTimer.cancel();
-        setTimer(30, 30);
+        setTimer(Integer.parseInt(exerciseTime), Integer.parseInt(exerciseTime));
         startTimer();
     }
 
@@ -233,10 +232,9 @@ public class Action1 extends ActionBarActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                // Do something after 1s = 1000ms
                 countDownTimer.start();
             }
-        }, 1000);
+        }, 1000); // 1s = 1000ms
 
     }
 
@@ -244,7 +242,7 @@ public class Action1 extends ActionBarActivity {
         String timeLeft = textViewShowTime.getText().toString().replace("\"","");
         int time = Integer.parseInt(timeLeft);
 
-        ImageView x =  (ImageView)findViewById(R.id.imageView1);
+        //Stop the timer when get to the pause page
         countDownTimer.cancel();
         sensor.stopSensor();
 

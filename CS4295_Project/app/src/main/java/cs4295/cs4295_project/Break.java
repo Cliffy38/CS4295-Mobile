@@ -43,8 +43,8 @@ public class Break extends ActionBarActivity {
     private long timeBlinkInMilliseconds; // start time of start blinking
     private boolean blink; // controls the blinking .. on and off
 
-    //Set Break Time
-    private int time = 10 ;
+    //Set timer From share preference
+    private int time;
 
     //For intent
     private LinearLayout layout ;
@@ -58,6 +58,7 @@ public class Break extends ActionBarActivity {
     String repeat;
     String exerciseTime;
     String breakTime;
+    Boolean SoundOn ;
 
     //Sound
     private MediaPlayer mp1 ;
@@ -122,8 +123,8 @@ public class Break extends ActionBarActivity {
         if(myIntent.getExtras() == null) {
             String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
             Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
-            timeLeft = 10 ;
-            setTimer(time,timeLeft); //10 second
+            time = Integer.parseInt(breakTime) ;
+            setTimer(time,time); // The exercise time and the timeLeft should be the same
             startTimer();
 
         }
@@ -137,11 +138,11 @@ public class Break extends ActionBarActivity {
             }
             else{
                 //Change Action -> Reset Timer
-                timeLeft = 10;
+                timeLeft = Integer.parseInt(breakTime) ;
             }
 
             textViewShowTime.setText(timeLeft+"\"");
-            setTimer(time,timeLeft); //30 second
+            setTimer(time,timeLeft); //get from share preference
             startTimer();
         }
     }
