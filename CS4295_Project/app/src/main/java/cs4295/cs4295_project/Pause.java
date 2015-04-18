@@ -1,6 +1,7 @@
 package cs4295.cs4295_project;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -24,6 +25,13 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
     private Vibrator myVib;
 
+    //Share preference
+    SharedPreferences settingsPrefs;
+    String repeat;
+    String exerciseTime;
+    String breakTime;
+    Boolean SoundOn ;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +47,12 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         next.setOnClickListener(this);
         play.setOnClickListener(this);
         previous.setOnClickListener(this);
+
+        //Get Share Preference
+        settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
+        repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
+        exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
+        breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
 
         play.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -106,14 +120,16 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 if(currentPage=="Action1") // Action1 -> Pause -> Break(Action2)
                 {
                     i = new Intent(getApplicationContext() ,Break.class);
+                    //i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
                 }
                 else //  currentPage =="Break"
                 {
                     i = new Intent(getApplicationContext() ,Break.class);
+                    //i.putExtra("TimeLeft",Integer.parseInt(breakTime));
                 }
-                i.putExtra("TimeLeft",30);
+
                 i.putExtra("currentAction",actionId+1);
-                i.putExtra("ChangeAction",false);
+                i.putExtra("ChangeAction",true);
                 startActivity(i);
                 finish();
 
@@ -132,7 +148,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 }
                 i.putExtra("TimeLeft",timeLeft);
                 i.putExtra("currentAction", actionId);
-                i.putExtra("ChangeAction",true);
+                i.putExtra("ChangeAction",false);
 
                 startActivity(i);
                 finish();
@@ -145,15 +161,16 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
                 if(currentPage=="Action1") // Action1 -> Pause -> Action0
                 {
-                    i = new Intent(getApplicationContext() ,Action1.class);
+                    i = new Intent(getApplicationContext() ,Break.class);
+                    i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
                 }
                 else //  currentPage =="Break"
                 {
                     i = new Intent(getApplicationContext() ,Break.class);
+                    i.putExtra("TimeLeft",Integer.parseInt(breakTime));
                 }
-                i.putExtra("TimeLeft",30);
                 i.putExtra("currentAction",actionId);
-                i.putExtra("ChangeAction",false);
+                i.putExtra("ChangeAction",true);
 
                 startActivity(i);
                 finish();

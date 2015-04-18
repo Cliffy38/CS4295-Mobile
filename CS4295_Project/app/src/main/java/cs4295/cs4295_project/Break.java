@@ -132,13 +132,16 @@ public class Break extends ActionBarActivity {
             String testing= "Intent Data Here:"+ repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
             Toast.makeText(getApplicationContext(), testing, Toast.LENGTH_LONG).show();
 
-            if(myIntent.getBooleanExtra("ChangeAction",false)) {
-                //Set to the pause time
-                timeLeft = myIntent.getIntExtra("TimeLeft", 1);
-            }
-            else{
+            time = Integer.parseInt(breakTime) ;
+
+            if(myIntent.getBooleanExtra("ChangeAction",true)) {
                 //Change Action -> Reset Timer
                 timeLeft = Integer.parseInt(breakTime) ;
+            }
+            else{
+
+                //Set to the pause time
+                timeLeft = myIntent.getIntExtra("TimeLeft", 1);
             }
 
             textViewShowTime.setText(timeLeft+"\"");

@@ -76,7 +76,6 @@
             android:id="@+id/tvTimeCount"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:text="10&#34;"
             android:textColor="#fff"
             android:textSize="45dip"/>
 
