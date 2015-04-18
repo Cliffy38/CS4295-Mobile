@@ -52,9 +52,9 @@ public class Settings extends ActionBarActivity {
         workOutSec = (TextView) findViewById(R.id.Workout);
         restSec = (TextView) findViewById(R.id.Break);
 
-        repeatSec.setText(repeat+"times");
-        workOutSec.setText(exerciseTime+"sec");
-        restSec.setText(breakTime+"sec");
+        repeatSec.setText(repeat+" times");
+        workOutSec.setText(exerciseTime+" sec");
+        restSec.setText(breakTime+" sec");
 
         repeatView.setOnClickListener(new View.OnClickListener() {
             @Override

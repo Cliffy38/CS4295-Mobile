@@ -20,7 +20,7 @@
             android:layout_gravity="center_horizontal|center"
             android:textColor="#fff"
             android:textSize="35dip"
-            android:text="Ready To Go !"/>
+            android:text="Here We Go !"/>
 
         <TextView
             android:layout_width="wrap_content"

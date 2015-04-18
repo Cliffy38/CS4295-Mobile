@@ -24,7 +24,8 @@
         android:id="@+id/dialog_spinner"
         android:layout_height="wrap_content"
         android:layout_width="fill_parent"
-        android:layout_marginTop="10dp"
+
+        android:layout_below="@id/dialog_title"
         android:scrollbarSize="5dp"/>
 
     <Button
