@@ -2,6 +2,7 @@ package cs4295.cs4295_project;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.view.Window;
@@ -19,16 +20,19 @@ public class RestDialog extends Dialog {
     private Spinner mSpinner;
     private DialogListener mReadyListener;
     private TextView title;
-
+    private String selection;
+    SharedPreferences settingsPrefs;
     public RestDialog() {
         super(null);
     }
 
 
-    public RestDialog(Context context, DialogListener readyListener) {
+    public RestDialog(Context context, DialogListener readyListener,String selected) {
         super(context);
         mReadyListener = readyListener;
         mContext = context;
+        selection = selected;
+
         mList = new ArrayList<String>();
         mList.add("5");
         mList.add("10");
@@ -50,6 +54,11 @@ public class RestDialog extends Dialog {
         mSpinner = (Spinner) findViewById(R.id.dialog_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, mList);
         mSpinner.setAdapter(adapter);
+
+        int spinnerPosition = adapter.getPosition(selection);
+
+//set the default according to value
+        mSpinner.setSelection(spinnerPosition);
 
         Button buttonOK = (Button) findViewById(R.id.dialogOK);
         Button buttonCancel = (Button) findViewById(R.id.dialogCancel);

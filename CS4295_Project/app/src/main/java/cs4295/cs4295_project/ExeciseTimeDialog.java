@@ -20,16 +20,19 @@ public class ExeciseTimeDialog extends Dialog {
     private Spinner mSpinner;
     private DialogListener mReadyListener;
     private TextView title;
+    private String selection;
+
 
     public ExeciseTimeDialog() {
         super(null);
     }
 
-    public ExeciseTimeDialog(Context context, DialogListener readyListener) {
+    public ExeciseTimeDialog(Context context, DialogListener readyListener,String selected) {
         super(context);
 
         mReadyListener = readyListener;
         mContext = context;
+        selection = selected;
         mList = new ArrayList<String>();
         mList.add("15");
         mList.add("20");
@@ -57,6 +60,11 @@ public class ExeciseTimeDialog extends Dialog {
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, mList);
 
         mSpinner.setAdapter(adapter);
+
+        int spinnerPosition = adapter.getPosition(selection);
+
+//set the default according to value
+        mSpinner.setSelection(spinnerPosition);
 
         Button buttonOK = (Button) findViewById(R.id.dialogOK);
         Button buttonCancel = (Button) findViewById(R.id.dialogCancel);

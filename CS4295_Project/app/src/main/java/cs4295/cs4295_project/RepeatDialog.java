@@ -17,17 +17,19 @@ public class RepeatDialog extends Dialog {
     private Context mContext;
     private Spinner mSpinner;
     private DialogListener mReadyListener;
-
+    SharedPreferences settingsPrefs;
+    private String selection;
 
     public RepeatDialog() {
         super(null);
     }
 
 
-    public RepeatDialog(Context context, DialogListener readyListener) {
+    public RepeatDialog(Context context, DialogListener readyListener,String selected) {
         super(context);
         mReadyListener = readyListener;
         mContext = context;
+        selection = selected;
         mList = new ArrayList<String>();
         mList.add("0");
         mList.add("1");
@@ -52,6 +54,11 @@ public class RepeatDialog extends Dialog {
         mSpinner = (Spinner) findViewById(R.id.dialog_spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(mContext, android.R.layout.simple_spinner_dropdown_item, mList);
         mSpinner.setAdapter(adapter);
+
+        int spinnerPosition = adapter.getPosition(selection);
+
+//set the default according to value
+        mSpinner.setSelection(spinnerPosition);
 
         Button buttonOK = (Button) findViewById(R.id.dialogOK);
         Button buttonCancel = (Button) findViewById(R.id.dialogCancel);
