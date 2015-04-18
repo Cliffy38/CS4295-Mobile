@@ -19,24 +19,13 @@ import android.widget.Toast;
 import android.os.Handler;
 
 
-public class Action1 extends ActionBarActivity {
+public class Action1 extends ActionBarActivity implements TimerActivity{
 
     private ProgressBar mProgressBar;
     private TextView textViewShowTime;
     private TextView textViewActionName;
     private CountDownTimer countDownTimer; // built in android class
     private AccSensor sensor = new AccSensor(this);
-
-    //for switching images
-    private int[] imgNum = {
-            R.drawable.action1,R.drawable.action2,R.drawable.action3,R.drawable.action4,
-            R.drawable.action5,R.drawable.action6,R.drawable.action7,R.drawable.action8,
-            R.drawable.action9,R.drawable.action10,R.drawable.action11,R.drawable.action12};
-    //for switching words
-    private String[] actionName ={
-            "Jumping Jacks", "Wall Sit","Push Up","Abdominal Crunch","Step up Onto Chair",
-            "Squat","Triceps Dip On Chair", "Plank", "High Knees/Running", "Lunge",
-            "Push-Up and Rotation", "Right Side Plank", "Left Side Plank"} ;
 
     private long totalTimeCountInMilliseconds; // total count down time in milliseconds
     private long timeBlinkInMilliseconds; // start time of start blinking
@@ -148,6 +137,7 @@ public class Action1 extends ActionBarActivity {
     protected void onPause() {
         super.onPause();
         time = Integer.parseInt(breakTime) ;
+        countDownTimer.cancel();
         sensor.stopSensor();
     }
 
@@ -266,6 +256,7 @@ public class Action1 extends ActionBarActivity {
 
         //Cancel all activities when back button pressed
         countDownTimer.cancel();
+        sensor.stopSensor();
         finish();
 
     }

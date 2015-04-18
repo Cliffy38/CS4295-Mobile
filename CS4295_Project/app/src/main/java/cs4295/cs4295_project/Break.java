@@ -19,25 +19,13 @@ import android.widget.Toast;
 import android.os.Handler;
 
 
-public class Break extends ActionBarActivity {
+public class Break extends ActionBarActivity implements TimerActivity{
 
     private ProgressBar mProgressBar;
     private TextView textViewShowTime;
     private TextView textViewActionName;
     private CountDownTimer countDownTimer; // built in android class
-
-    //for switching images
-    private int[] imgNum = {
-            R.drawable.action1,R.drawable.action2,R.drawable.action3,R.drawable.action4,
-            R.drawable.action5,R.drawable.action6,R.drawable.action7,R.drawable.action8,
-            R.drawable.action9,R.drawable.action10,R.drawable.action11,R.drawable.action12
-    };
-
-    private String[] actionName ={
-            "Jumping Jacks", "Wall Sit","Push Up","Abdominal Crunch","Step up Onto Chair",
-            "Squat","Triceps Dip On Chair", "Plank", "High Knees/Running", "Lunge",
-            "Push-Up and Rotation", "Right Side Plank", "Left Side Plank"
-    } ;
+    private AccSensor sensor = new AccSensor(this);//Sensor
 
     private long totalTimeCountInMilliseconds; // total count down time in milliseconds
     private long timeBlinkInMilliseconds; // start time of start blinking
@@ -49,7 +37,6 @@ public class Break extends ActionBarActivity {
     //For intent
     private LinearLayout layout ;
     private int timeLeft , actionId ;
-    private boolean countDownEnd = false; // if countDownEnd = true -> Times up
 
     private Vibrator myVib;
 
@@ -110,13 +97,7 @@ public class Break extends ActionBarActivity {
                 myVib.vibrate(50);
 
                 Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
-
-                if(! countDownEnd) {
-                    pauseHandle();
-                }
-                else {
-                    resetTimer();
-                }
+                pauseHandle();
             }
         });
 
@@ -159,13 +140,12 @@ public class Break extends ActionBarActivity {
     }
 
     private void resetTimer() {
-        countDownEnd = false;
         setTimer(30,30);
         startTimer();
     }
 
     private void startTimer() {
-
+        sensor.startSensor();
         countDownTimer = new CountDownTimer(totalTimeCountInMilliseconds, 500) {
             @Override
             public void onTick(long millisUntilFinished) {
@@ -210,14 +190,7 @@ public class Break extends ActionBarActivity {
 
             @Override
             public void onFinish() {
-
-                //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
-                Intent i = new Intent(getApplicationContext() ,Action1.class);
-                i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
-                i.putExtra("currentAction",actionId);
-                i.putExtra("ChangeAction",false);
-                finish();
-                startActivity(i);
+                skipBreak();
             }
         };
 
@@ -231,10 +204,27 @@ public class Break extends ActionBarActivity {
         }, 1000);
     }
 
+    public void skipBreak(){
+        //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
+        Intent i = new Intent(getApplicationContext() ,Action1.class);
+        i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
+        i.putExtra("currentAction",actionId);
+        i.putExtra("ChangeAction",false);
+        finish();
+        startActivity(i);
+    }
+
     @Override
     protected void onPause() {
         super.onPause();
-        //pauseHandle();
+        countDownTimer.cancel();
+        sensor.stopSensor();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        sensor.startSensor();
     }
 
     private void pauseHandle(){
@@ -243,6 +233,7 @@ public class Break extends ActionBarActivity {
 
         ImageView x =  (ImageView)findViewById(R.id.imageView1);
         countDownTimer.cancel();
+        sensor.stopSensor();
 
         Intent i = new Intent(getApplicationContext() ,Pause.class);
         i.putExtra("TimeLeft",time);
@@ -266,6 +257,7 @@ public class Break extends ActionBarActivity {
 
         //Cancel all activities when back button pressed
         countDownTimer.cancel();
+        sensor.stopSensor();
         finish();
     }
 

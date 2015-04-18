@@ -1,18 +1,11 @@
 package cs4295.cs4295_project;
 
-import android.app.Activity;
+
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Bundle;
-import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.widget.ListView;
-import android.widget.Toast;
-
-import java.util.ArrayList;
 
 public class AccSensor implements SensorEventListener {
     private float mLastX, mLastY, mLastZ;
@@ -21,15 +14,24 @@ public class AccSensor implements SensorEventListener {
     private Sensor mAccelerometer;
     private final float NOISE = (float) 2.0;
     private Action1 action;
+    private Break actionBreak;
     private int changeTimes = 0;
 
     public AccSensor(Action1 a){
         action = a;
     }
+    public AccSensor(Break b) {
+        actionBreak = b;
+    }
 
     public void startSensor() {
         mInitialized = false;
-        mSensorManager = (SensorManager) action.getSystemService(Context.SENSOR_SERVICE);
+        if (!(action == null)){
+            mSensorManager = (SensorManager) action.getSystemService(Context.SENSOR_SERVICE);
+        }
+        else if (!(actionBreak == null)){
+            mSensorManager = (SensorManager) actionBreak.getSystemService(Context.SENSOR_SERVICE);
+        }
         mAccelerometer = mSensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
         mSensorManager.registerListener(this, mAccelerometer, SensorManager.SENSOR_DELAY_NORMAL);
     }
@@ -40,7 +42,7 @@ public class AccSensor implements SensorEventListener {
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
-// can be safely ignored for this demo
+    // can be safely ignored for this demo
     }
 
     @Override
@@ -63,13 +65,23 @@ public class AccSensor implements SensorEventListener {
             mLastX = x;
             mLastY = y;
             mLastZ = z;
-            if (deltaX > 20 || deltaY > 20 || deltaZ > 20){
+            if (deltaX > 15 || deltaY > 15 || deltaZ > 15){
                 changeTimes++;
             }
             if (changeTimes > 2){
-                action.resetTimer();
-                changeTimes = 0;
+                callAction(action, actionBreak);
             }
+        }
+    }
+
+    private void callAction(Action1 a, Break b){
+        changeTimes = 0;
+        if (!(a == null)){
+            a.resetTimer();
+        }
+        else if (!(b == null)){
+            b.skipBreak();
+            b.onPause();
         }
     }
 
