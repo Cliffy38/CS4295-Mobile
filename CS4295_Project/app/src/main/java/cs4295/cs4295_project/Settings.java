@@ -69,7 +69,7 @@ public class Settings extends ActionBarActivity {
                         editor.putString(getString(R.string.repeat), n);
                         editor.commit();
                         repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
-                        repeatSec.setText(repeat+"times");
+                        repeatSec.setText(repeat+" times");
                     }
                 },repeat);
                 dialog.show();
@@ -90,7 +90,7 @@ public class Settings extends ActionBarActivity {
                         editor.putString(getString(R.string.exerciseTime), n);
                         editor.commit();
                         exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
-                        workOutSec.setText(exerciseTime+"sec");
+                        workOutSec.setText(exerciseTime+" sec");
                     }
                 },exerciseTime);
                 dialog.show();
@@ -111,7 +111,7 @@ public class Settings extends ActionBarActivity {
                         editor.putString(getString(R.string.breakTime), n);
                         editor.commit();
                         breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
-                        restSec.setText(breakTime+"sec");
+                        restSec.setText(breakTime+" sec");
                     }
                 },breakTime);
                 dialog.show();
