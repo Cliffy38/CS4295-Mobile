@@ -101,20 +101,20 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
             public void onClick(View v) {
                 myVib.vibrate(50);
 
-                Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
                     pauseHandle();
             }
         });
 
         if(myIntent.getExtras() == null) {
             String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
-            Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
             time = Integer.parseInt(exerciseTime) ;
             setTimer(time,time); // The exercise time and the timeLeft should be the same
             startTimer();
         }
         else {
-            Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(), "Intent data here", Toast.LENGTH_LONG).show();
 
             time = Integer.parseInt(exerciseTime) ;
 

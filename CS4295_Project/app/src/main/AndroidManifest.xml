@@ -31,10 +31,6 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".AccTestActivity"
-            android:label="@string/title_activity_acc_test"
-            android:parentActivityName=".Home" />
-        <activity
             android:name=".Timer"
             android:label="@string/title_activity_timer" />
         <activity
