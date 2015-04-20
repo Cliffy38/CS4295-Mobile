@@ -102,9 +102,7 @@ public class Settings extends ActionBarActivity {
             @Override
             public void onClick(View arg0) {
                 RestDialog dialog = new RestDialog(Settings.this, new RestDialog.DialogListener() {
-                    public void cancelled() {
-                        // do your code here
-                    }
+                    public void cancelled() {}
 
                     public void ready(String n) {
                         SharedPreferences.Editor editor = settingsPrefs.edit();
@@ -131,16 +129,10 @@ public class Settings extends ActionBarActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

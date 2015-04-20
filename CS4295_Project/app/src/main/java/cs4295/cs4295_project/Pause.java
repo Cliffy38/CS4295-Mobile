@@ -113,7 +113,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         Intent i ;
         switch (v.getId()) {
             case R.id.btnNext:
-//                Toast.makeText(Pause.this, "Next is clicked!", Toast.LENGTH_SHORT).show();
                 myVib.vibrate(50);
 
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
@@ -135,7 +134,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
                 break;
             case R.id.btnPlay:
-                //Toast.makeText(Pause.this, "Play is clicked!", Toast.LENGTH_LONG).show();
                 myVib.vibrate(50);
 
                 if(currentPage.equals("Action1")) //Action 1 -> Pause -> Action1
@@ -156,7 +154,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 //Create an Intent -> pass actionId + time -> Start Activity
                 break;
             case R.id.btnPrevious:
-//                Toast.makeText(Pause.this, "Previuso is clicked!", Toast.LENGTH_SHORT).show();
                 myVib.vibrate(50);
 
                 if(currentPage=="Action1") // Action1 -> Pause -> Action0
@@ -188,16 +185,10 @@ public class Pause extends ActionBarActivity implements OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

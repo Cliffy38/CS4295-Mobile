@@ -58,7 +58,7 @@ public class RepeatDialog extends Dialog {
 
         int spinnerPosition = adapter.getPosition(selection);
 
-//set the default according to value
+        //set the default according to value
         mSpinner.setSelection(spinnerPosition);
 
         Button buttonOK = (Button) findViewById(R.id.dialogOK);

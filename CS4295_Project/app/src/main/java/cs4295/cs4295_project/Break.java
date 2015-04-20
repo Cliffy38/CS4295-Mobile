@@ -174,15 +174,12 @@ public class Break extends ActionBarActivity implements TimerActivity{
                         mpGo.start();
                         break;
                     case 1:
-                        //Toast.makeText(getApplicationContext(), "1", Toast.LENGTH_SHORT).show();
                         mp1.start();
                         break;
                     case 2 :
-                        //Toast.makeText(getApplicationContext(), "2", Toast.LENGTH_SHORT).show();
                         mp2.start();
                         break;
                     case 3 :
-                        //Toast.makeText(getApplicationContext(), "3", Toast.LENGTH_SHORT).show();
                         mp3.start();
                         break;
                 }
@@ -254,7 +251,6 @@ public class Break extends ActionBarActivity implements TimerActivity{
     @Override
     public void onBackPressed() {
         super.onBackPressed();
-
         //Cancel all activities when back button pressed
         countDownTimer.cancel();
         sensor.stopSensor();
@@ -263,16 +259,10 @@ public class Break extends ActionBarActivity implements TimerActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }

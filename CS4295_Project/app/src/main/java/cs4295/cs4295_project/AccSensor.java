@@ -41,9 +41,7 @@ public class AccSensor implements SensorEventListener {
     }
 
     @Override
-    public void onAccuracyChanged(Sensor sensor, int accuracy) {
-    // can be safely ignored for this demo
-    }
+    public void onAccuracyChanged(Sensor sensor, int accuracy) { }
 
     @Override
     public void onSensorChanged(SensorEvent event) {

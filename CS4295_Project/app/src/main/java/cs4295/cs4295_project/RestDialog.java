@@ -39,7 +39,6 @@ public class RestDialog extends Dialog {
         mList.add("15");
         mList.add("20");
 
-
     }
 
     @Override
@@ -57,7 +56,7 @@ public class RestDialog extends Dialog {
 
         int spinnerPosition = adapter.getPosition(selection);
 
-//set the default according to value
+        //set the default according to value
         mSpinner.setSelection(spinnerPosition);
 
         Button buttonOK = (Button) findViewById(R.id.dialogOK);

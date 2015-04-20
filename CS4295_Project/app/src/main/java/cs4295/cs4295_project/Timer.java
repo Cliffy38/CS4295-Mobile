@@ -81,7 +81,6 @@ public class Timer extends ActionBarActivity implements View.OnClickListener {
             public void onTick(long millisUntilFinished) {
                 long seconds = millisUntilFinished / 1000;
                 //Setting the Progress Bar to decrease wih the timer
-                //Setting the Progress Bar to decrease wih the timer
                 mProgressBar.setProgress((int) (millisUntilFinished / 1000));
                 textViewShowTime.setTextAppearance(getApplicationContext(),
                         R.style.normalColor);
@@ -130,16 +129,10 @@ public class Timer extends ActionBarActivity implements View.OnClickListener {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 
