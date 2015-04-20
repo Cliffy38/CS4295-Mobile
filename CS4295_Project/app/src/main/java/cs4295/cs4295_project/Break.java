@@ -96,23 +96,18 @@ public class Break extends ActionBarActivity implements TimerActivity{
             public void onClick(View v) {
                 myVib.vibrate(50);
 
-                Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
                 pauseHandle();
             }
         });
 
         if(myIntent.getExtras() == null) {
             String testing= "first time repeat:"+repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
-            Toast.makeText(getApplicationContext(), testing , Toast.LENGTH_LONG).show();
             time = Integer.parseInt(breakTime) ;
             setTimer(time,time); // The exercise time and the timeLeft should be the same
             startTimer();
-
         }
         else {
             String testing= "Intent Data Here:"+ repeat +" ex.time: "+exerciseTime+" breaktime: "+breakTime;
-            Toast.makeText(getApplicationContext(), testing, Toast.LENGTH_LONG).show();
-
             time = Integer.parseInt(breakTime) ;
 
             if(myIntent.getBooleanExtra("ChangeAction",true)) {
