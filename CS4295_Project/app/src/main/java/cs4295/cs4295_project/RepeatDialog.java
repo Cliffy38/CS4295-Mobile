@@ -32,7 +32,6 @@ public class RepeatDialog extends Dialog {
         mContext = context;
         selection = selected;
         mList = new ArrayList<String>();
-        mList.add("0");
         mList.add("1");
         mList.add("2");
         mList.add("3");

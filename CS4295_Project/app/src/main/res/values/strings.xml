@@ -32,5 +32,6 @@
 
     <string name="title_activity_dialog">Dialog</string>
     <string name="title_activity_break">Break</string>
+    <string name="title_activity_end">End</string>
 
 </resources>
