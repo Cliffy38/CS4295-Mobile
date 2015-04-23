@@ -36,7 +36,7 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
 
     //For intent
     private LinearLayout layout ;
-    private int timeLeft , actionId ;
+    private int timeLeft , actionId , round;
 
     private Vibrator myVib;
 
@@ -45,7 +45,6 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
     String repeat;
     String exerciseTime;
     String breakTime;
-    Boolean SoundOn ;
 
     //Sound
     private MediaPlayer mp1 ;
@@ -64,26 +63,31 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
         Intent myIntent = getIntent(); // gets the previously created intent
         timeLeft = myIntent.getIntExtra("TimeLeft",30);// get share preference
         actionId = myIntent.getIntExtra("currentAction",0);
-
-        //
-        ImageView img = (ImageView)findViewById(R.id.imageView1);
-        img.setImageResource(imgNum[actionId]);
-        TextView roundNum = (TextView)findViewById(R.id.tvRound);
-        roundNum.setText("Round "+ (actionId+1));
-        textViewActionName = (TextView)findViewById(R.id.tvActionName);
-        textViewActionName.setText(actionName[actionId]);
-
-        //Get Sound
-        mp1 = MediaPlayer.create(this, R.raw.one2);
-        mp2 = MediaPlayer.create(this, R.raw.two2);
-        mp3 = MediaPlayer.create(this, R.raw.three2);
-        mpStop =MediaPlayer.create(this, R.raw.stop);
+        round = myIntent.getIntExtra("currentRound",1);
 
         //Get Share Preference
         settingsPrefs = getSharedPreferences("FitBo", MODE_PRIVATE);
         repeat = settingsPrefs.getString(getString(R.string.repeat), "1");
         exerciseTime = settingsPrefs.getString(getString(R.string.exerciseTime), "30");
         breakTime = settingsPrefs.getString(getString(R.string.breakTime), "10");
+
+        //Set Image
+        ImageView img = (ImageView)findViewById(R.id.imageView1);
+        img.setImageResource(imgNum[actionId]);
+
+        //Set Round#
+        TextView roundNum = (TextView)findViewById(R.id.tvRound);
+        roundNum.setText("Round "+round+"/"+repeat);
+
+        //Set ActionId
+        textViewActionName = (TextView)findViewById(R.id.tvActionName);
+        textViewActionName.setText(actionId+1+"/12 "+actionName[actionId]);
+
+        //Get Sound
+        mp1 = MediaPlayer.create(this, R.raw.one2);
+        mp2 = MediaPlayer.create(this, R.raw.two2);
+        mp3 = MediaPlayer.create(this, R.raw.three2);
+        mpStop =MediaPlayer.create(this, R.raw.stop);
 
         myVib = (Vibrator) this.getSystemService(VIBRATOR_SERVICE);
 
@@ -209,11 +213,33 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
             @Override
             public void onFinish() {
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
-                Intent i = new Intent(getApplicationContext() ,Break.class);
-                i.putExtra("TimeLeft",10); //Set time to 10 sec
-                i.putExtra("currentAction",actionId+1);
-                startActivity(i);
-                finish();
+                if(actionId== 11)
+                {
+                     if(round==Integer.parseInt(repeat))
+                     {
+                         Intent i = new Intent(getApplicationContext() ,End.class);
+                         startActivity(i);
+                         finish();
+                     }
+                     else
+                     {
+                         Intent i = new Intent(getApplicationContext() ,Break.class);
+                         i.putExtra("TimeLeft",10); //Set time to 10 sec
+                         i.putExtra("currentAction",0);
+                         i.putExtra("currentRound",round+1);
+                         startActivity(i);
+                         finish();
+                     }
+                }
+                else
+                {
+                    Intent i = new Intent(getApplicationContext() ,Break.class);
+                    i.putExtra("TimeLeft",10); //Set time to 10 sec
+                    i.putExtra("currentAction",actionId+1);
+                    i.putExtra("currentRound",round);
+                    startActivity(i);
+                    finish();
+                }
             }
         };
 
@@ -239,6 +265,7 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
         i.putExtra("currentPage","Action1");
+        i.putExtra("currentRound",round);
         startActivity(i);
         finish();
     }

@@ -2,7 +2,6 @@ package cs4295.cs4295_project;
 
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.ActionBar;
@@ -13,14 +12,13 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageButton;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
 public class Pause extends ActionBarActivity implements OnClickListener {
 
     private ImageButton next , play , previous;
-    private int timeLeft , actionId ;
+    private int timeLeft , actionId , round;
     private String currentPage ; //For recording the previous pass in page (Action1 -> Pause / Break -> Pause)
 
     private Vibrator myVib;
@@ -30,7 +28,6 @@ public class Pause extends ActionBarActivity implements OnClickListener {
     String repeat;
     String exerciseTime;
     String breakTime;
-    Boolean SoundOn ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -106,6 +103,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
         timeLeft = myIntent.getIntExtra("TimeLeft",1);
         actionId = myIntent.getIntExtra("currentAction",0);
         currentPage = myIntent.getStringExtra("currentPage") ;
+        round = myIntent.getIntExtra("currentRound",1);
     }
 
     @Override
@@ -119,17 +117,40 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 //Create an Intent -> pass actionId + 1 and time= 0 -> Start Activity
                 if(currentPage=="Action1") // Action1 -> Pause -> Break(Action2)
                 {
-                    i = new Intent(getApplicationContext() ,Break.class);
-                    //i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
+                    if( actionId ==11 && round==Integer.parseInt(repeat))
+                    {
+                        i = new Intent(getApplicationContext(), End.class);
+                    }
+                    else if (actionId ==11 && round!=Integer.parseInt(repeat))
+                    {
+                        i = new Intent(getApplicationContext(), Break.class);
+                        i.putExtra("currentAction",0); //Start the next round
+                        i.putExtra("currentRound",round+1);
+                        i.putExtra("ChangeAction",true);
+                    }
+                    else// ActionId != 11
+                    {
+                        i = new Intent(getApplicationContext() ,Break.class);
+                        i.putExtra("currentAction",actionId+1);
+                        i.putExtra("currentRound",round);
+                        i.putExtra("ChangeAction",true);
+                    }
                 }
                 else //  currentPage =="Break"
                 {
-                    i = new Intent(getApplicationContext() ,Break.class);
-                    //i.putExtra("TimeLeft",Integer.parseInt(breakTime));
+                    if( actionId ==11 && round==Integer.parseInt(repeat))
+                    {
+                        i = new Intent(getApplicationContext(), End.class);
+                    }
+                    else
+                    {
+                        i = new Intent(getApplicationContext() ,Break.class);
+                        i.putExtra("currentAction",actionId+1);
+                        i.putExtra("currentRound",round);
+                        i.putExtra("ChangeAction",true);
+                    }
                 }
 
-                i.putExtra("currentAction",actionId+1);
-                i.putExtra("ChangeAction",true);
                 startActivity(i);
                 finish();
 
@@ -149,6 +170,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 i.putExtra("TimeLeft",timeLeft);
                 i.putExtra("currentAction", actionId);
                 i.putExtra("ChangeAction",false);
+                i.putExtra("currentRound",round);
 
                 startActivity(i);
                 finish();
@@ -171,7 +193,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                 }
                 i.putExtra("currentAction",actionId);
                 i.putExtra("ChangeAction",true);
-
+                i.putExtra("currentRound",round);
                 startActivity(i);
                 finish();
 

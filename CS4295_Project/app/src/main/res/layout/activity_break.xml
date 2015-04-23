@@ -27,9 +27,9 @@
             android:layout_height="wrap_content"
             android:id="@+id/tvActionName"
             android:layout_gravity="center_horizontal|center"
-            android:text="Push Up"
+            android:text="1/12 Push Up"
             android:textColor="#fff"
-            android:textSize="30dip"/>
+            android:textSize="25dip"/>
 
     </LinearLayout>
 

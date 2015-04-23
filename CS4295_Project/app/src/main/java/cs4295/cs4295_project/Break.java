@@ -36,7 +36,7 @@ public class Break extends ActionBarActivity implements TimerActivity{
 
     //For intent
     private LinearLayout layout ;
-    private int timeLeft , actionId ;
+    private int timeLeft , actionId , round;
 
     private Vibrator myVib;
 
@@ -62,11 +62,12 @@ public class Break extends ActionBarActivity implements TimerActivity{
 
         Intent myIntent = getIntent(); // gets the previously created intent
         actionId = myIntent.getIntExtra("currentAction",0);
+        round = myIntent.getIntExtra("currentRound",1);
 
         ImageView img = (ImageView)findViewById(R.id.imageView1);
         img.setImageResource(imgNum[actionId]);
         textViewActionName = (TextView)findViewById(R.id.tvActionName);
-        textViewActionName.setText(actionName[actionId]);
+        textViewActionName.setText(actionId+1+"/12 "+actionName[actionId]);
 
         //Get Sound
         mp1 = MediaPlayer.create(this, R.raw.one2);
@@ -210,6 +211,7 @@ public class Break extends ActionBarActivity implements TimerActivity{
         i.putExtra("TimeLeft",Integer.parseInt(exerciseTime));
         i.putExtra("currentAction",actionId);
         i.putExtra("ChangeAction",false);
+        i.putExtra("currentRound",round);
         finish();
         startActivity(i);
     }
@@ -239,6 +241,7 @@ public class Break extends ActionBarActivity implements TimerActivity{
         i.putExtra("TimeLeft",time);
         i.putExtra("currentAction", actionId);
         i.putExtra("currentPage","Break");
+        i.putExtra("currentRound",round);
         startActivity(i);
         finish();
     }

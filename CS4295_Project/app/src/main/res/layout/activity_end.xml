@@ -10,12 +10,12 @@
         android:id="@+id/imageView1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:src="@drawable/end"
+        android:background="@drawable/end"
         android:layout_above="@+id/tvEnd"
         android:layout_centerInParent="true"
         android:layout_marginBottom="20dp"/>
 
-    <TextView android:text="Congratulations !" android:layout_width="wrap_content" android:id="@id/tvEnd"
+    <TextView android:text="Congratulations !" android:layout_width="wrap_content" android:id="@+id/tvEnd"
         android:layout_height="wrap_content" android:textSize="35dp" android:layout_centerInParent="true"/>
 
     <TextView android:text="You made the difference !" android:layout_width="wrap_content" android:id="@+id/tvFinish"
