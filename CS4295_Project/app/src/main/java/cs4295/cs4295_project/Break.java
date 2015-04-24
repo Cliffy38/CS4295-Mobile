@@ -98,7 +98,7 @@ public class Break extends ActionBarActivity implements TimerActivity{
                 myVib.vibrate(50);
 
 //                Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
-                pauseHandle();
+                pauseHandleSpecial();
             }
         });
 
@@ -233,7 +233,6 @@ public class Break extends ActionBarActivity implements TimerActivity{
         String timeLeft = textViewShowTime.getText().toString().replace("\"","");
         int time = Integer.parseInt(timeLeft);
 
-        ImageView x =  (ImageView)findViewById(R.id.imageView1);
         countDownTimer.cancel();
         sensor.stopSensor();
 
@@ -245,7 +244,36 @@ public class Break extends ActionBarActivity implements TimerActivity{
         startActivity(i);
         finish();
     }
+    private void pauseHandleSpecial() {
+        String timeLeft = textViewShowTime.getText().toString().replace("\"", "");
+        if (timeLeft.equals(""))
+        {
+            int time = Integer.parseInt(exerciseTime);
+        } else
+        {
+            int time = Integer.parseInt(timeLeft);
+        }
 
+
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                // Do something after 1s = 1000ms
+                countDownTimer.cancel();
+                sensor.stopSensor();
+            }
+        }, 1000);
+
+        Intent i = new Intent(getApplicationContext() ,Pause.class);
+        i.putExtra("TimeLeft",time);
+        i.putExtra("currentAction", actionId);
+        i.putExtra("currentPage","Break");
+        i.putExtra("currentRound",round);
+        startActivity(i);
+
+        finish();
+    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

@@ -105,8 +105,8 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
             public void onClick(View v) {
                 myVib.vibrate(50);
 
-//                Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
-                    pauseHandle();
+//               Toast.makeText(getApplicationContext(), "Button is clicked", Toast.LENGTH_LONG).show();
+                 pauseHandle();
             }
         });
 
@@ -254,6 +254,23 @@ public class Action1 extends ActionBarActivity implements TimerActivity{
     }
 
     private void pauseHandle(){
+        String timeLeft = textViewShowTime.getText().toString().replace("\"","");
+        int time = Integer.parseInt(timeLeft);
+
+        //Stop the timer when get to the pause page
+        countDownTimer.cancel();
+        sensor.stopSensor();
+
+        Intent i = new Intent(getApplicationContext() ,Pause.class);
+        i.putExtra("TimeLeft",time);
+        i.putExtra("currentAction", actionId);
+        i.putExtra("currentPage","Action1");
+        i.putExtra("currentRound",round);
+        startActivity(i);
+        finish();
+    }
+
+    private void pauseHandleSpecial(){
         String timeLeft = textViewShowTime.getText().toString().replace("\"","");
         int time = Integer.parseInt(timeLeft);
 

@@ -121,7 +121,7 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                     {
                         i = new Intent(getApplicationContext(), End.class);
                     }
-                    else if (actionId ==11 && round!=Integer.parseInt(repeat))
+                    else if (actionId ==11 && round !=Integer.parseInt(repeat))
                     {
                         i = new Intent(getApplicationContext(), Break.class);
                         i.putExtra("currentAction",0); //Start the next round
@@ -141,6 +141,13 @@ public class Pause extends ActionBarActivity implements OnClickListener {
                     if( actionId ==11 && round==Integer.parseInt(repeat))
                     {
                         i = new Intent(getApplicationContext(), End.class);
+                    }
+                    else if (actionId ==11 && round !=Integer.parseInt(repeat))
+                    {
+                        i = new Intent(getApplicationContext(), Break.class);
+                        i.putExtra("currentAction",0); //Start the next round
+                        i.putExtra("currentRound",round+1);
+                        i.putExtra("ChangeAction",true);
                     }
                     else
                     {
